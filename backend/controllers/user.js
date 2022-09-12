@@ -13,12 +13,12 @@ exports.signup = (req, res, next) => {
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           job: req.body.job
-        });
+        })
         user.save()
           .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
-          .catch(error => res.status(400).json({ error }));
+          .catch(error => res.status(400).json({ error }))
       })
-      .catch(error => res.status(500).json(console.log(req.body.password)))
+      .catch(error => res.status(500).json({ error }))
   }
 
   exports.login = (req, res, next) => {
