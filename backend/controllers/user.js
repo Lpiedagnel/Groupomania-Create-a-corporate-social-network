@@ -4,7 +4,7 @@ const User = require('../models/User')
 require('dotenv').config()
 
 exports.signup = (req, res, next) => {
-    console.log(req.body.password)
+    console.log(req.body)
     bcrypt.hash(req.body.password, 10)
       .then(hash => {
         const user = new User({

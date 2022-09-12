@@ -13,19 +13,22 @@ export default function () {
         try {
           let res = await fetch("http://localhost:4200/api/auth/signup", {
             method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify({
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
                 job: job,
-                password: password,
+                password: password
             }),
           })
           let resJson = await res.json()
           if (res.status === 200) {
             console.log(resJson)
           } else {
-            setMessage("Some error occured")
+            console.log(resJson)
           }
         } catch (err) {
           console.log(err);
