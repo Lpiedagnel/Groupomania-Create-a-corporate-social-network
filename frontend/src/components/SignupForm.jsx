@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-export default function () {
+export default function SignupForm () {
 
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
