@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import App from "./App"
 import Signup from './routes/signup'
 import Login from './routes/login'
+import Home from './routes/home'
 
 import style from "./index.css"
 
@@ -15,6 +16,7 @@ root.render(
         <Route path="/" element={<App />}>
             <Route path="signup" element={<Signup />} />
             <Route path="login" element={<Login />} />
+            <Route path="home" element={<Home />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from "react-router-dom";
+
 
 export default function LoginForm () {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const navigate = useNavigate();
 
     let handleSubmit = async (e) => {
         e.preventDefault()
@@ -21,6 +24,9 @@ export default function LoginForm () {
           let resJson = await res.json()
           if (res.status === 200) {
             console.log(resJson)
+            // Set localstorage and redirect to home
+            localStorage.setItem("authenticated", true)
+            navigate("/home")
           } else {
             console.log(resJson)
           }

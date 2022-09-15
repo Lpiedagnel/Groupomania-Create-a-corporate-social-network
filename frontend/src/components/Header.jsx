@@ -13,12 +13,11 @@ export default function Header () {
 
     return (
     <div className="navbar">
-        <Link to="/" className='navbar__link'><img src={logo} className="navbar__logo" /></Link>
+        <Link to="/home" className='navbar__link'><img src={logo} className="navbar__logo" /></Link>
         <FontAwesomeIcon onClick={classToggle} icon={faBars} className="navbar__link navbar__link--toggle" />
         <nav className="navbar__items">
-            <Link to="/" className='navbar__link'>Accueil</Link>
+            <Link to="/home" className='navbar__link'>Accueil</Link>
             <Link to="/signup" className='navbar__link'>S'inscrire</Link>
-            <Link to="/login" className='navbar__link'>Se connecter</Link>
         </nav>
     </div>
     )
