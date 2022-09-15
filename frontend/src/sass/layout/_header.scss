@@ -1,52 +1,54 @@
-.nav {
+.navbar {
     background-color: $primary-color;
-    color: $light;
-    overflow: hidden;
+    display: flex;
+    font-family: sans-serif;
+
+    &__logo {
+        height: 1.2em;
+    }
 
     &__link {
+        padding: 1em;
+        font-size: 1.3em;
         color: $light;
-        float: left;
-        display: block;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 1.5em;
 
         &:hover {
-            color: $secondary-color;
-            background-color: darken($primary-color, 10);
             transition: 0.3s;
+            background-color: darken($primary-color, 10);
+        }
+
+        &--toggle {
+            display: none;
         }
     }
 
-    &__icon {
-        display: none;
+    &__items {
+        display: flex;
     }
-}
+  }
 
-@include responsive {
-    .nav {
-        &__link {
+  @include responsive {
+    .navbar__items, 
+    .navbar {
+        flex-direction: column;
+    }
+
+    .navbar {
+        &__items {
             display: none;
         }
 
-        &__icon {
-            float: right;
-            display: block;
+        &__toggleShow {
+            display: flex;
+        }
+
+        &__link {
+            &--toggle {
+                align-self: flex-end;
+                display: initial;
+                position: absolute;
+                cursor: pointer;
+            }
         }
     }
-
-    .nav.responsive .nav__icon {
-        position: absolute;
-        right: 0;
-        top: 0;
-        background-color: darken($primary-color, 10);
-    }
-
-    .nav.responsive .nav__link {
-        float: none;
-        display: block;
-        text-align: left;
-    }
-
-}
+  }
