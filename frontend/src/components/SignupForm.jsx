@@ -11,7 +11,7 @@ export default function SignupForm () {
     let handleSubmit = async (e) => {
         e.preventDefault()
         try {
-          let res = await fetch("http://localhost:4200/api/auth/signup", {
+          let res = await fetch("http://localhost:4200/api/auth/register", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
