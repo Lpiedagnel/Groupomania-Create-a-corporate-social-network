@@ -119,7 +119,8 @@ module.exports.commentPost = (req, res) => {
                 $push: {
                     comments: {
                         commenterId: req.body.commenterId,
-                        commenterPseudo: req.body.commenterPseudo,
+                        commenterFirstName: req.body.commenterFirstName,
+                        commenterLastName: req.body.commenterLastName,
                         text: req.body.text,
                         timestamp: new Date().getTime()
                     }
