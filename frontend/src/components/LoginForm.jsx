@@ -11,7 +11,7 @@ export default function LoginForm () {
     let handleSubmit = async (e) => {
         e.preventDefault()
         try {
-          let res = await fetch("http://localhost:4200/api/auth/login", {
+          let res = await fetch("http://localhost:4200/api/user/login", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

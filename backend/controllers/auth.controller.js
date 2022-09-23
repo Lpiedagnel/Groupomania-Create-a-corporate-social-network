@@ -6,17 +6,17 @@ require('dotenv').config({path: './config/.env'})
 const maxAge = 3 * 21 * 60 * 1000 // Three days (the first number (3) is the number of day)
 
 const createToken = (id) => {
-    return jwt.sign({id}, process.env.TOKEN_SECRET, {
+    return jwt.sign({id}, process.env.TOKEN_KEY, {
         expiresIn: maxAge
     })
 }
 
 module.exports.signUp = async (req, res) => {
     console.log(req.body)
-    const {firstName, lastName, email, password} = req.body
+    const {firstName, lastName, job, email, password} = req.body
 
     try {
-        const user = await UserModel.create({firstName, lastName, email, password})
+        const user = await UserModel.create({firstName, lastName, job, email, password})
         res.status(201).json({ user: user._id})
     }
     catch(err) {

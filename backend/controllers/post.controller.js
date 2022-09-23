@@ -121,6 +121,7 @@ module.exports.commentPost = (req, res) => {
                         commenterId: req.body.commenterId,
                         commenterFirstName: req.body.commenterFirstName,
                         commenterLastName: req.body.commenterLastName,
+                        commenterJob: req.body.commenterJob,
                         text: req.body.text,
                         timestamp: new Date().getTime()
                     }
