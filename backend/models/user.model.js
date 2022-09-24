@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema(
             required: true,
             minLength: 3,
             maxLength: 55,
-            unique: true,
+            unique: false,
             trim: true
         },
         lastName: {
@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema(
             required: true,
             minLength: 3,
             maxLength: 55,
-            unique: true,
+            unique: false,
             trim: true
         },
         job: {
@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema(
             required: true,
             minLength: 3,
             maxLength: 55,
-            unique: true,
+            unique: false,
             trim: true
         },
         email: {
@@ -58,6 +58,10 @@ const userSchema = new mongoose.Schema(
         },
         likes: {
             type: [String]
+        },
+        isAdmin: {
+            type: Boolean,
+            default: false
         }
     },
     {
