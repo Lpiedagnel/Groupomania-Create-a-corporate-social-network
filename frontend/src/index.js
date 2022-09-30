@@ -1,23 +1,23 @@
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App'
+import { Provider } from 'react-redux'
+import { applyMiddleware, createStore } from 'redux'
+import thunk from 'redux-thunk'
+import rootReducer from './reducers'
+import style from './index.css'
 
-import React from "react"
-import ReactDOM from "react-dom/client"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import App from "./App"
-import Signup from './routes/signup'
-import Login from './routes/login'
-import Home from './routes/home'
+// Dev tools
+import { composeWithDevTools } from 'redux-devtools-extension'
 
-import style from "./index.css"
-
-const root = ReactDOM.createRoot(document.getElementById("root"))
-root.render(
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-            <Route path="signup" element={<Signup />} />
-            <Route path="login" element={<Login />} />
-            <Route path="home" element={<Home />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+const store = createStore(
+    rootReducer, composeWithDevTools(applyMiddleware(thunk))
 )
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(
+    <Provider store={store}>
+        <App />
+    </Provider>
+)
+

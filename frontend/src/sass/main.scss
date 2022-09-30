@@ -15,9 +15,10 @@
   'base/fonts';
 
 // 4. Layout-related sections
-@import
-  'layout/header';
 
 // 5. Components
+@import
+  'components/navbar',
+  'components/form';
 
 // 6. Page-specific styles

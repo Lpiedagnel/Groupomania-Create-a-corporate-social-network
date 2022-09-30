@@ -1,0 +1,16 @@
+.nav-container {
+    background-color: $primary-color;
+    color: $light;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    a {
+        color: $light;
+    }
+
+    img {
+        width: 25%;
+    }
+}
