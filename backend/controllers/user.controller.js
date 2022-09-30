@@ -114,3 +114,7 @@ module.exports.unfollow = async (req, res) => {
         return res.status(500).json({ message: err })
     }
 }
+
+module.exports.uploadProfil = async (req, res) => {
+    res.status(201).send({ message: 'L\'avatar est mise en ligne !'})
+}
