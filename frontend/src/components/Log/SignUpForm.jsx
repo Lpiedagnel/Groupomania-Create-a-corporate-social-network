@@ -4,7 +4,10 @@ import SignInForm from './SignInForm'
 
 const SignUpForm = () => {
   const [formSubmit, setFormSubmit] = useState(false)
-  const [pseudo, setPseudo] = useState('')
+  // const [pseudo, setPseudo] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [job, setJob] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [controlPassword, setControlPassword] = useState('')
@@ -12,7 +15,10 @@ const SignUpForm = () => {
   const handleRegister = async (e) => {
     e.preventDefault()
     const terms = document.getElementById('terms')
-    const pseudoError = document.querySelector('.pseudo.error')
+    // const pseudoError = document.querySelector('.pseudo.error')
+    const firstNameError = document.querySelector('.firstName.error')
+    const lastNameError = document.querySelector('.lastName.error')
+    const jobError = document.querySelector('.job.error')
     const emailError = document.querySelector('.email.error')
     const passwordError = document.querySelector('.password.error')
     const passwordConfirmError = document.querySelector('.password-confirm.error')
@@ -34,7 +40,9 @@ const SignUpForm = () => {
         // url: `${process.env.REACT_APP_API_URL}api/user/register`,
         url: 'http://localhost:4200/api/user/register',
         data: {
-          pseudo,
+          firstName,
+          lastName,
+          job,
           email,
           password
         }
@@ -42,7 +50,9 @@ const SignUpForm = () => {
         .then((res) => {
           console.log(res)
           if (res.data.errors) {
-            pseudoError.innerHTML = res.data.errors.pseudo
+            firstNameError.innerHTML = res.data.errors.firstName
+            lastNameError.innerHTML = res.data.errors.lastName
+            jobError.innerHTML = res.data.errors.job
             emailError.innerHTML = res.data.errors.email
             passwordError.innerHTML = res.data.errors.password
           } else {
@@ -63,30 +73,64 @@ const SignUpForm = () => {
         </>
       ) : (
         <form action="" onSubmit={handleRegister} id="sign-up-form">
-          <label htmlFor="pseudo">Pseudo</label>
+
+          {/* FirstName */}
+          <label htmlFor="firstName">Prénom</label>
           <br />
           <input
             type="text"
-            name="pseudo"
-            id="pseudo"
-            onChange={(e) => setPseudo(e.target.value)}
-            value={pseudo}
+            name="firstName"
+            id="firstName"
+            onChange={(e) => setFirstName(e.target.value)}
+            value={firstName}
           />
           <br />
-          <div className="pseudo error"></div>
+          <div className="firstName error"></div>
           <br />
+
+          {/* LastName */}
+          <label htmlFor="lastName">Nom</label>
+          <br />
+          <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            onChange={(e) => setLastName(e.target.value)}
+            value={lastName}
+          />
+          <br />
+          <div className="lastName error"></div>
+          <br />
+
+          {/* Job */}
+          <label htmlFor="job">Poste au sein de Groupomania</label>
+          <br />
+          <input
+            type="text"
+            name="job"
+            id="job"
+            onChange={(e) => setJob(e.target.value)}
+            value={job}
+          />
+          <br />
+          <div className="job error"></div>
+          <br />
+
+          {/* Email */}
           <label htmlFor="email">Email</label>
           <br />
           <input
             type="text"
             name="email"
-            id="pseudo"
+            id="email"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
           <br />
           <div className="email error"></div>
           <br />
+
+          {/* Password */}
           <label htmlFor="password">Mot de passe</label>
           <br />
           <input
@@ -98,7 +142,9 @@ const SignUpForm = () => {
           />
           <div className="password error"></div>
           <br />
-          <label htmlFor="pseudo-conf">Confirmer le mot de passe</label>
+
+          {/* Password confirmation */}
+          <label htmlFor="password-conf">Confirmer le mot de passe</label>
           <br />
           <input
             type="password"
