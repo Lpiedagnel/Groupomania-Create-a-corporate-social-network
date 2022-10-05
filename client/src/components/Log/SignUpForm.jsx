@@ -1,51 +1,52 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-import SignInForm from './SignInForm'
+import React, { useState } from "react"
+import axios from "axios"
+import SignInForm from "./SignInForm"
 
 const SignUpForm = () => {
   const [formSubmit, setFormSubmit] = useState(false)
   // const [pseudo, setPseudo] = useState('')
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [job, setJob] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [controlPassword, setControlPassword] = useState('')
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [job, setJob] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [controlPassword, setControlPassword] = useState("")
 
   const handleRegister = async (e) => {
     e.preventDefault()
-    const terms = document.getElementById('terms')
+    const terms = document.getElementById("terms")
     // const pseudoError = document.querySelector('.pseudo.error')
-    const firstNameError = document.querySelector('.firstName.error')
-    const lastNameError = document.querySelector('.lastName.error')
-    const jobError = document.querySelector('.job.error')
-    const emailError = document.querySelector('.email.error')
-    const passwordError = document.querySelector('.password.error')
-    const passwordConfirmError = document.querySelector('.password-confirm.error')
-    const termsError = document.querySelector('.terms.error')
-
+    const firstNameError = document.querySelector(".firstName.error")
+    const lastNameError = document.querySelector(".lastName.error")
+    const jobError = document.querySelector(".job.error")
+    const emailError = document.querySelector(".email.error")
+    const passwordError = document.querySelector(".password.error")
+    const passwordConfirmError = document.querySelector(
+      ".password-confirm.error"
+    )
+    const termsError = document.querySelector(".terms.error")
 
     passwordConfirmError.innerHTML = ""
     termsError.innerHTML = ""
 
     if (password != controlPassword || !terms.checked) {
       if (password != controlPassword)
-        passwordConfirmError.innerHTML = "Les mots de passe ne correspondent pas."
+        passwordConfirmError.innerHTML =
+          "Les mots de passe ne correspondent pas."
 
       if (!terms.checked)
         termsError.innerHTML = "Veuillez valider les conditions générales."
     } else {
       await axios({
-        method: 'post',
-        // url: `${process.env.REACT_APP_API_URL}api/user/register`,
-        url: 'http://localhost:4200/api/user/register',
+        method: "post",
+        url: `${process.env.REACT_APP_API_URL}api/user/register`,
         data: {
           firstName,
           lastName,
           job,
           email,
-          password
-        }
+          password,
+        },
       })
         .then((res) => {
           console.log(res)
@@ -69,11 +70,16 @@ const SignUpForm = () => {
         <>
           <SignInForm />
           <span></span>
-          <h4 className='success'>Enregistrement réussi, veuillez-vous connecter</h4>
+          <h4 className="success">
+            Enregistrement réussi, veuillez-vous connecter
+          </h4>
         </>
       ) : (
-        <form action="" onSubmit={handleRegister} id="sign-up-form">
-
+        <form
+          action=""
+          onSubmit={handleRegister}
+          id="sign-up-form"
+        >
           {/* FirstName */}
           <label htmlFor="firstName">Prénom</label>
           <br />
@@ -155,14 +161,28 @@ const SignUpForm = () => {
           />
           <div className="password-confirm error"></div>
           <br />
-          <input type="checkbox" id="terms" />
-          <label htmlFor="terms">J'accepte les <a href="/" target="_blank" rel="noopener noreferrer">Conditions générales</a></label>
+          <input
+            type="checkbox"
+            id="terms"
+          />
+          <label htmlFor="terms">
+            J'accepte les{" "}
+            <a
+              href="/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Conditions générales
+            </a>
+          </label>
           <div className="terms error"></div>
           <br />
-          <input type="submit" value="Valider inscription" />
+          <input
+            type="submit"
+            value="Valider inscription"
+          />
         </form>
-      )
-      }
+      )}
     </>
   )
 }
