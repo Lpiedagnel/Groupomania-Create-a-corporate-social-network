@@ -131,11 +131,10 @@ module.exports.unfollow = async (req, res) => {
 }
 
 module.exports.uploadProfil = async (req, res) => {
-  const fileName = req.body.name.toLowerCase().split(" ").join("_")
   try {
     await UserModel.findByIdAndUpdate(
       req.body.userId,
-      { $set: { picture: "./uploads/profil/" + fileName + ".jpg" } },
+      { $set: { picture: "./uploads/profil/" + req.body.userId + ".jpg" } },
       { new: true, upsert: true, setDefaultsOnInsert: true }
     )
       .then((data) => res.send(data))

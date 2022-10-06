@@ -26,7 +26,7 @@ const UploadImg = () => {
     } else {
       setError("")
       const data = new FormData()
-      data.append("name", userData.pseudo)
+      data.append("name", userData.firstName + userData.lastName)
       data.append("userId", userData._id)
       data.append("file", file)
 

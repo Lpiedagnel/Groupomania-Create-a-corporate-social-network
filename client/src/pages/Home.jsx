@@ -4,9 +4,10 @@ import { UidContext } from "../components/AppContext"
 import LeftNav from "../components/LeftNav"
 import NewPostForm from "../components/Post/NewPostForm"
 import Thread from "../components/Post/Thread"
-import Log from "../components/Log"
 import Trends from "../components/Trends"
 import FriendsHint from "../components/Profil/FriendsHint"
+import Welcome from "../components/Welcome"
+
 
 const Home = () => {
   const uid = useContext(UidContext)
@@ -14,26 +15,25 @@ const Home = () => {
   return (
     <div className="main-container">
       <LeftNav />
-      <div className="main">
-        <div className="home-header">
-          {uid ? (
-            <NewPostForm />
-          ) : (
-            <Log
-              signin={true}
-              signup={false}
-            />
-          )}
-        </div>
-        <Thread />
-      </div>
-      <div className="right-side">
-        <div className="right-side-container">
-          <div className="wrapper">
-            <Trends />
-            {uid && <FriendsHint />}
-          </div>
-        </div>
+      <div className="home">
+        {uid ? (
+          <>
+            <div className="home__header">
+              <NewPostForm />
+            </div>
+            <Thread />
+            <div className="home__right-side">
+              <div className="home__right-side-container">
+                <div className="home__wrapper">
+                  <Trends />
+                  {uid && <FriendsHint />}
+                </div>
+              </div>
+            </div>
+          </>
+        ) : (
+          <Welcome />
+        )}
       </div>
     </div>
   )

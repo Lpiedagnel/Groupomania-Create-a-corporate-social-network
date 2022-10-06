@@ -5,8 +5,7 @@ const storage = multer.diskStorage({
     cb(null, `${__dirname}/../../client/public/uploads/profil`)
   },
   filename: (req, file, cb) => {
-    const name = req.body.name.toLowerCase().split(" ").join("_")
-    console.log(name)
+    const name = req.body.userId
     cb(null, name + ".jpg")
   },
 })
