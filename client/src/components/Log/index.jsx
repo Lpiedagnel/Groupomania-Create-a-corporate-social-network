@@ -18,20 +18,20 @@ const Log = (props) => {
   }
 
   return (
-    <div className="connection-form">
-      <div className="form-container">
-        <ul>
+    <div className="connection">
+      <div className="connection__container">
+        <ul className="connection__list">
           <li
             onClick={handleModals}
             id="register"
-            className={signUpModal ? "active-btn" : null}
+            className={signUpModal ? "connection__item connection__item--active" : 'connection__item'}
           >
             S'inscrire
           </li>
           <li
             onClick={handleModals}
             id="login"
-            className={signInModal ? "active-btn" : null}
+            className={signInModal ? "connection__item connection__item--active" : 'connection__item'}
           >
             {" "}
             Se connecter

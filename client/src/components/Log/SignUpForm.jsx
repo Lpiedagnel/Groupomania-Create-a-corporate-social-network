@@ -16,15 +16,15 @@ const SignUpForm = () => {
     e.preventDefault()
     const terms = document.getElementById("terms")
     // const pseudoError = document.querySelector('.pseudo.error')
-    const firstNameError = document.querySelector(".firstName.error")
-    const lastNameError = document.querySelector(".lastName.error")
-    const jobError = document.querySelector(".job.error")
-    const emailError = document.querySelector(".email.error")
-    const passwordError = document.querySelector(".password.error")
+    const firstNameError = document.querySelector(".signup__error--firstName")
+    const lastNameError = document.querySelector(".signup__error--lastName")
+    const jobError = document.querySelector(".signup__error--job")
+    const emailError = document.querySelector(".signup__error--email")
+    const passwordError = document.querySelector(".signup__error--password")
     const passwordConfirmError = document.querySelector(
-      ".password-confirm.error"
+      ".signup__error--password-confirm"
     )
-    const termsError = document.querySelector(".terms.error")
+    const termsError = document.querySelector(".signup__error--terms")
 
     passwordConfirmError.innerHTML = ""
     termsError.innerHTML = ""
@@ -70,7 +70,7 @@ const SignUpForm = () => {
         <>
           <SignInForm />
           <span></span>
-          <h4 className="success">
+          <h4 className="signup__success">
             Enregistrement réussi, veuillez-vous connecter
           </h4>
         </>
@@ -79,9 +79,15 @@ const SignUpForm = () => {
           action=""
           onSubmit={handleRegister}
           id="sign-up-form"
+          className="signup__form"
         >
           {/* FirstName */}
-          <label htmlFor="firstName">Prénom</label>
+          <label
+            htmlFor="firstName"
+            className="signup__label"
+          >
+            Prénom
+          </label>
           <br />
           <input
             type="text"
@@ -89,13 +95,19 @@ const SignUpForm = () => {
             id="firstName"
             onChange={(e) => setFirstName(e.target.value)}
             value={firstName}
+            className="signup__input"
           />
           <br />
-          <div className="firstName error"></div>
+          <div className="signup__error signup__error--firstName"></div>
           <br />
 
           {/* LastName */}
-          <label htmlFor="lastName">Nom</label>
+          <label
+            className="signup__label"
+            htmlFor="lastName"
+          >
+            Nom
+          </label>
           <br />
           <input
             type="text"
@@ -103,13 +115,19 @@ const SignUpForm = () => {
             id="lastName"
             onChange={(e) => setLastName(e.target.value)}
             value={lastName}
+            className="signup__input"
           />
           <br />
-          <div className="lastName error"></div>
+          <div className="signup__error signup__error--lastName"></div>
           <br />
 
           {/* Job */}
-          <label htmlFor="job">Poste au sein de Groupomania</label>
+          <label
+            className="signup__label"
+            htmlFor="job"
+          >
+            Poste au sein de Groupomania
+          </label>
           <br />
           <input
             type="text"
@@ -117,13 +135,19 @@ const SignUpForm = () => {
             id="job"
             onChange={(e) => setJob(e.target.value)}
             value={job}
+            className="signup__input"
           />
           <br />
-          <div className="job error"></div>
+          <div className="signup__error signup__error--job"></div>
           <br />
 
           {/* Email */}
-          <label htmlFor="email">Email</label>
+          <label
+            className="signup__label"
+            htmlFor="email"
+          >
+            Email
+          </label>
           <br />
           <input
             type="text"
@@ -131,13 +155,19 @@ const SignUpForm = () => {
             id="email"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
+            className="signup__input"
           />
           <br />
-          <div className="email error"></div>
+          <div className="signup__error signup__error--email"></div>
           <br />
 
           {/* Password */}
-          <label htmlFor="password">Mot de passe</label>
+          <label
+            className="signup__label"
+            htmlFor="password"
+          >
+            Mot de passe
+          </label>
           <br />
           <input
             type="password"
@@ -145,12 +175,18 @@ const SignUpForm = () => {
             id="password"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
+            className="signup__input"
           />
-          <div className="password error"></div>
+          <div className="signup__error signup__error--password"></div>
           <br />
 
           {/* Password confirmation */}
-          <label htmlFor="password-conf">Confirmer le mot de passe</label>
+          <label
+            className="signup__label"
+            htmlFor="password-conf"
+          >
+            Confirmer le mot de passe
+          </label>
           <br />
           <input
             type="password"
@@ -158,12 +194,14 @@ const SignUpForm = () => {
             id="password-conf"
             onChange={(e) => setControlPassword(e.target.value)}
             value={controlPassword}
+            className="signup__input"
           />
-          <div className="password-confirm error"></div>
+          <div className="signup__error signup__error--password-confirm"></div>
           <br />
           <input
             type="checkbox"
             id="terms"
+            className="signup__checkbox"
           />
           <label htmlFor="terms">
             J'accepte les{" "}
@@ -175,11 +213,12 @@ const SignUpForm = () => {
               Conditions générales
             </a>
           </label>
-          <div className="terms error"></div>
+          <div className="signup__error signup__error--terms"></div>
           <br />
           <input
             type="submit"
             value="Valider inscription"
+            className="signup__submit btn"
           />
         </form>
       )}

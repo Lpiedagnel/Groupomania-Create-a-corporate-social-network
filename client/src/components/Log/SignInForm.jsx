@@ -7,8 +7,8 @@ const SignInForm = () => {
 
   const handleLogin = (e) => {
     e.preventDefault()
-    const emailError = document.querySelector(".email.error")
-    const passwordError = document.querySelector(".password.error")
+    const emailError = document.querySelector(".signin__error--email")
+    const passwordError = document.querySelector(".signin__error--password")
 
     axios({
       method: "post",
@@ -37,6 +37,7 @@ const SignInForm = () => {
       action=""
       onSubmit={handleLogin}
       id="sign-up-form"
+      className="signin__form"
     >
       <label htmlFor="email">Email</label>
       <br />
@@ -46,8 +47,9 @@ const SignInForm = () => {
         id="email"
         onChange={(e) => setEmail(e.target.value)}
         value={email}
+        className="signin__input"
       />
-      <div className="email error"></div>
+      <div className="signin__error signin__error--email"></div>
       <br />
       <label htmlFor="password">Mot de passe</label>
       <br />
@@ -57,12 +59,14 @@ const SignInForm = () => {
         id="password"
         onChange={(e) => setPassword(e.target.value)}
         value={password}
+        className="signin__input"
       />
-      <div className="password error"></div>
+      <div className="signin__error signin__error--password"></div>
       <br />
       <input
         type="submit"
         value="Se connecter"
+        className="signin__submit btn"
       />
     </form>
   )
