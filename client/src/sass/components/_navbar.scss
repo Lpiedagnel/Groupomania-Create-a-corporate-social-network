@@ -1,16 +1,45 @@
-.nav-container {
-    background-color: $primary-color;
-    color: $light;
+.navbar {
+  background-color: $primary-color;
+  color: $light;
+
+  &__container {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
+    justify-content: space-around;
+    padding: 0%;
+  }
 
-    a {
-        color: $light;
+  &__logo {
+    &-img {
+      height: 1.4em;
     }
+  }
 
-    img {
-        width: 25%;
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  &__item {
+    padding: 1em 4em;
+    margin: 0%;
+  }
+
+  // All Links
+  a,
+  &__item {
+    transition: 0.3s;
+    color: $light;
+
+    &:hover {
+      background-color: $primary-color-darken;
+      color: $light-darken;
+      cursor: pointer;
     }
+  }
 }

@@ -1,15 +1,21 @@
 /* Colors variables */
 
-$primary-color: #FD2D01;
-$secondary-color: #FFD7D7;
-$tertiary-color: #4E5166;
+$primary-color: #fd2d01;
+$primary-color-darken: darken($primary-color, 10%);
 
-$light: #F6F6F6;
+$secondary-color: #ffd7d7;
+$secondary-color-darken: darken($secondary-color, 10%);
+
+$tertiary-color: #4e5166;
+$tertiary-color-darken: darken($tertiary-color, 10%);
+
+$light: #f6f6f6;
+$light-darken: darken($light, 10%);
+
 $dark: #353535;
+$dark-darken: darken($dark, 10%);
 
 /* Breakpoints */
 
-$breakpoints: (
-    tablet: 599px,
-    desktop: 992px
-);
+$desktop: 992px;
+$tablet: 599px;
