@@ -13,7 +13,8 @@
 @import "layout/container";
 
 // 5. Components
-@import "components/button", "components/navbar", "components/leftNav",
+@import "components/button", "components/navbar", "components/leftNav", "components/uploadAvatar.scss",
   "components/connection";
 
 // 6. Page-specific styles
+@import "pages/profil"

@@ -1,0 +1,28 @@
+.avatar {
+  padding: 1em;
+
+  &__label {
+    margin: 20px;
+    font-weight: bold;
+    color: $primary-color;
+    transition: 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      color: $primary-color-darken;
+    }
+  }
+
+  &__upload {
+    display: none;
+  }
+
+  &__submit {
+    margin: 20px;
+  }
+
+  &__error {
+    font-weight: bold;
+    color: $error;
+  }
+}

@@ -12,7 +12,7 @@ const Home = () => {
   const uid = useContext(UidContext)
 
   return (
-    <div className="home">
+    <div className="main-container">
       <LeftNav />
       <div className="main">
         <div className="home-header">

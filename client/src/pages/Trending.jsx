@@ -12,7 +12,7 @@ const Trending = () => {
   const trendList = useSelector((state) => state.trendingReducer)
 
   return (
-    <div className="trending-page">
+    <div className="main-container">
       <LeftNav />
       <div className="main">
         <ul>

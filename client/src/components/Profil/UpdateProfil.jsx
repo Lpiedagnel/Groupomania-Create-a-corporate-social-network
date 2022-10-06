@@ -1,5 +1,4 @@
 import React from "react"
-import LeftNav from "../LeftNav"
 import { useDispatch, useSelector } from "react-redux"
 import UploadImg from "./UploadImg"
 import { useState } from "react"
@@ -12,7 +11,6 @@ const UpdateProfil = () => {
   const [updateForm, setUpdateForm] = useState(false)
   const userData = useSelector((state) => state.userReducer)
   const usersData = useSelector((state) => state.usersReducer)
-  const error = useSelector((state) => state.errorReducer.userError)
   const dispatch = useDispatch()
   const [followingPopup, setFollowingPopup] = useState(false)
   const [followersPopup, setFollowersPopup] = useState(false)
@@ -23,29 +21,31 @@ const UpdateProfil = () => {
   }
 
   return (
-    <div className="profil-container">
-      <LeftNav />
-      <h1>Profil de {userData.pseudo}</h1>
-      <div className="update-container">
-        <div className="left-part">
-          <h3>Photo de profil</h3>
+    <div className="profil__container">
+      <h1 className="profil__name">
+        Profil de {userData.firstName} {userData.lastName}
+      </h1>
+      <div className="profil__update">
+        <div className="profil__left-part">
+          <h3 className="profil__title-section">Photo de profil</h3>
           <img
             src={userData.picture}
             alt="user-pic"
+            className="profil__avatar"
           />
           <UploadImg />
-          {/* 
-          If the error message was send from the back (but we don't do that here):
-          <p>{error.maxSize}</p>
-          <p>{error.format}</p> */}
         </div>
-        <div className="right-part">
-          <div className="bio-update">
-            <h3>Bio</h3>
+
+        <div className="profil__right-part">
+          <div className="profil__bio">
+            <h3 className="profil__title-section">Bio</h3>
             {updateForm === false && (
               <>
                 <p onClick={() => setUpdateForm(!updateForm)}>{userData.bio}</p>
-                <button onClick={() => setUpdateForm(!updateForm)}>
+                <button
+                  className="profil__btn btn"
+                  onClick={() => setUpdateForm(!updateForm)}
+                >
                   Modifier bio
                 </button>
               </>
@@ -53,24 +53,38 @@ const UpdateProfil = () => {
             {updateForm && (
               <>
                 <textArea
+                  className="profil__area"
                   type="text"
                   defaultValue={userData.bio}
                   onChange={(e) => setBio(e.target.value)}
                 ></textArea>
-                <button onClick={handleUpdate}>Valider modification</button>
+                <button
+                  className="profil__btn btn"
+                  onClick={handleUpdate}
+                >
+                  Valider modification
+                </button>
               </>
             )}
           </div>
-          <h4>Membre depuis le : {dateParser(userData.createdAt)}</h4>
-          <h5 onClick={() => setFollowingPopup(true)}>
+          <h4 className="profil__info">
+            Membre depuis le : {dateParser(userData.createdAt)}
+          </h4>
+          <h5
+            className="profil__info"
+            onClick={() => setFollowingPopup(true)}
+          >
             Abonnement : {userData.following ? userData.following.length : ""}
           </h5>
-          <h5 onClick={() => setFollowersPopup(true)}>
+          <h5
+            className="profil__info"
+            onClick={() => setFollowersPopup(true)}
+          >
             Abonnés : {userData.followers ? userData.followers.length : ""}
           </h5>
         </div>
       </div>
-
+      {/* PAUSE ICI */}
       {followingPopup && (
         <div className="popup-profil-container">
           <div className="modal">

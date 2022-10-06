@@ -1,6 +1,7 @@
 .connection {
-  width: 50%;
+  width: 80%;
   margin: auto;
+  grid-column: 2;
 
   &__list {
     background-color: $secondary-color;

@@ -1,6 +1,7 @@
 .leftNav {
   background-color: $light-darken;
   width: auto;
+  grid-column: 1;
 
   &__container {
     display: flex;
