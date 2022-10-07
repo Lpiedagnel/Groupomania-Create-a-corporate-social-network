@@ -82,28 +82,29 @@ const NewPostForm = () => {
   }, [userData, message, video])
 
   return (
-    <div className="post-container">
+    <div className="post">
       {isLoading ? (
-        <i className="fas fa-spinner fa-pulse"></i>
+        <i className="post__loading fas fa-spinner fa-pulse"></i>
       ) : (
         <>
-          <div className="data">
-            <p>
+          <div className="post__data">
+            <p className="post__follow">
               <span>{userData.following ? userData.following.length : 0}</span>{" "}
               Abonnement
               {userData.following && userData.following.length > 1 ? "s" : null}
             </p>
-            <p>
+            <p className="post__follow">
               <span>{userData.followers ? userData.followers.length : 0}</span>{" "}
               Abonné
               {userData.followers && userData.followers.length > 1 ? "s" : null}
             </p>
           </div>
           <NavLink to="/profil">
-            <div className="user-info">
+            <div className="post__user-info">
               <img
                 src={userData.picture}
                 alt="user-img"
+                className="post__user-avatar"
               />
             </div>
           </NavLink>
@@ -114,31 +115,39 @@ const NewPostForm = () => {
               placeholder="Quoi de neuf ?"
               onChange={(e) => setMessage(e.target.value)}
               value={message}
+              className="post-form__textarea"
             />
             {/* message preview */}
             {message || postPicture || video.length > 20 ? (
-              <li className="card-container">
-                <div className="card-left">
+              <li className="card__container">
+                <div className="card__left">
                   <img
                     src={userData.picture}
                     alt="user-pic"
+                    className="card__avatar"
                   />
                 </div>
-                <div className="card-right">
-                  <div className="card-header">
-                    <div className="pseudo">
-                      <h3>{userData.pseudo}</h3>
+                <div className="card__right">
+                  <div className="card__header">
+                    <div className="card__username">
+                      <h3>
+                        {userData.firstName} {userData.lastName}
+                      </h3>
                     </div>
-                    <span>{timestampParser(Date.now())}</span>
+                    <span className="card__date">
+                      {timestampParser(Date.now())}
+                    </span>
                   </div>
-                  <div className="content">
-                    <p>{message}</p>
+                  <div className="card__content">
+                    <p className="card__text">{message}</p>
                     <img
                       src={postPicture}
                       alt=""
+                      className="card__img"
                     />
                     {video && (
                       <iframe
+                        className="card__video"
                         src={video}
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -154,10 +163,7 @@ const NewPostForm = () => {
               <div className="icon">
                 {isEmpty(video) && (
                   <>
-                    <img
-                      src="./img/icons/picture.svg"
-                      alt="img"
-                    />
+                  <i className="fas fa-image"></i>
                     <input
                       type="file"
                       name="file"

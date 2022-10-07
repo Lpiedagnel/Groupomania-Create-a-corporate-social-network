@@ -1,0 +1,29 @@
+.post {
+  background-color: $light;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 5fr;
+  border: solid 3px $secondary-color-darken;
+  margin: 1em;
+
+  &__data {
+    background-color: $secondary-color-darken;
+    color: $light;
+    font-weight: bold;
+    padding: 1em;
+  }
+
+  &__user-info {
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__user-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}

@@ -17,10 +17,7 @@ const DeleteCard = (props) => {
         }
       }}
     >
-      <img
-        src="./img/icons/trash.svg"
-        alt="trash"
-      />
+      <i class="fa-solid fa-trash"></i>
     </div>
   )
 }

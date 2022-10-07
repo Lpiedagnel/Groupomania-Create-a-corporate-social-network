@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext, useState } from "react"
 import {
   BrowserRouter as Router,
   Navigate,
@@ -8,9 +8,19 @@ import {
 import Home from "../../pages/Home"
 import Profil from "../../pages/Profil"
 import Trending from "../../pages/Trending"
+import Admin from "../../pages/Admin"
 import Navbar from "../../components/Navbar"
+import { UidContext } from "../AppContext"
+import { useSelector } from "react-redux"
+
+
 
 const index = () => {
+
+  const uid = useContext(UidContext)
+  const userData = useSelector((state) => state.userReducer)
+
+
   return (
     <Router>
       <Navbar />
@@ -29,6 +39,17 @@ const index = () => {
           path="/trending"
           exact
           element={<Trending />}
+        />
+        <Route
+          path="/admin"
+          exact
+          element={
+            !uid || !userData.isAdmin ? (
+              <Navigate to="/" />
+            ) : (
+              <Admin />
+            )
+          }
         />
         <Route
           path="*"

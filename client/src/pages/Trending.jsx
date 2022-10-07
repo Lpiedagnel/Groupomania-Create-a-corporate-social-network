@@ -27,8 +27,8 @@ const Trending = () => {
       </div>
       <div className="right-side">
         <div className="right-side-container">
-          <Trends />
-          {uid && <FriendsHint />}
+          {/* <Trends />
+          {uid && <FriendsHint />} */}
         </div>
       </div>
     </div>
