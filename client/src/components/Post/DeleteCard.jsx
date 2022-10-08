@@ -17,7 +17,7 @@ const DeleteCard = (props) => {
         }
       }}
     >
-      <i class="fa-solid fa-trash"></i>
+      <i class="card__delete-btn fa-solid fa-trash"></i>
     </div>
   )
 }

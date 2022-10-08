@@ -19,7 +19,7 @@ const Home = () => {
         {uid ? (
           <>
             <div className="home__header">
-              {/* <NewPostForm /> */}
+             <NewPostForm />
             </div>
             <Thread />
             <div className="home__right-side">

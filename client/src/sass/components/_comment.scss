@@ -1,0 +1,77 @@
+.comment {
+  &__card {
+    border: solid 2px $secondary-color;
+    background-color: white;
+    border-radius: 15px;
+    padding: 1em;
+    margin: 1em;
+    display: grid;
+    grid-template-columns: 90px 1fr;
+
+    &--user {
+      background-color: rgb(255, 235, 235);
+    }
+  }
+
+  &__comment__left-part {
+    grid-column: 1;
+  }
+
+  &__avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &__right-part {
+    grid-column: 2;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__name-section {
+    display: flex;
+    align-items: center;
+  }
+
+  &__name-title {
+    color: $secondary-color-darken;
+    margin-right: 0.5em;
+    font-size: 1.2em;
+  }
+
+  &__date {
+    color: $tertiary-color;
+    font-style: italic;
+    font-size: 1em;
+  }
+
+  &__message {
+    line-height: 1.4em;
+    font-size: 1.1em;
+  }
+
+  &__form {
+    width: 95%;
+  }
+
+  &__input {
+    border: solid 2px $secondary-color;
+    outline: none;
+    border-radius: 15px;
+    margin: 1em;
+    padding: 1em;
+    font-size: 1.2em;
+    width: 100%;
+  }
+
+  &__btn {
+    width: 185px;
+    float: right;
+  }
+}

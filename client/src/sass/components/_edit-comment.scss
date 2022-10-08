@@ -1,0 +1,43 @@
+.edit-comment {
+  &__btn {
+    color: $secondary-color-darken;
+    transition: 0.3s;
+
+    &:hover {
+      color: $primary-color;
+      cursor: pointer;
+    }
+  }
+
+  &__label {
+    color: $secondary-color-darken;
+    font-weight: bold;
+    margin: 1em;
+  }
+
+  &__input {
+    border: 2px solid $secondary-color;
+    border-radius: 15px;
+    padding: 0.5em;
+    width: 75%;
+    margin: 0.5em;
+  }
+
+  &__delete {
+    font-size: 1.2em;
+    transition: 0.3s;
+    color: $secondary-color-darken;
+
+    &:hover {
+      color: $primary-color;
+      cursor: pointer;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

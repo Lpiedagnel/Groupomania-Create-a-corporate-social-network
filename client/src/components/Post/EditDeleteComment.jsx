@@ -38,19 +38,17 @@ const EditDeleteComment = ({ comment, postId }) => {
     <div className="edit-comment">
       {isAuthor && edit === false && (
         <span onClick={() => setEdit(!edit)}>
-          <img
-            src="./img/icons/edit.svg"
-            alt="edit-comment"
-          />
+<i className="edit-comment__btn fas fa-pencil-alt"></i>
         </span>
       )}
       {isAuthor && edit && (
         <form
           action=""
           onSubmit={handleEdit}
-          className="edit-comment-form"
+          className="edit-comment__form"
         >
           <label
+          className="edit-comment__label"
             htmlFor="text"
             onClick={() => {
               setEdit(!edit)
@@ -60,6 +58,7 @@ const EditDeleteComment = ({ comment, postId }) => {
           </label>
           <br />
           <input
+          className="edit-comment__input"
             type="text"
             name="text"
             onChange={(e) => {
@@ -68,7 +67,7 @@ const EditDeleteComment = ({ comment, postId }) => {
             defaultValue={comment.text}
           />
           <br />
-          <div className="btn">
+          <div className="edit-comment__footer">
             <span
               onClick={() => {
                 if (window.confirm("Voulez-vous supprimer ce commentaire ?")) {
@@ -76,12 +75,10 @@ const EditDeleteComment = ({ comment, postId }) => {
                 }
               }}
             >
-              <img
-                src="./img/icons/trash.svg"
-                alt="delete"
-              ></img>
+            <i class="edit-comment__delete fas fa-trash"></i>
             </span>
             <input
+            className="btn edit-comment__submit"
               type="submit"
               value="Valider modification"
             />

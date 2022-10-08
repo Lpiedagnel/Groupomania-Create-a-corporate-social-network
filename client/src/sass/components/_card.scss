@@ -7,6 +7,16 @@
   display: grid;
   grid-template-columns: 90px 1fr;
 
+  &__textarea {
+   border: solid 2px $secondary-color;
+   outline: none;
+   border-radius: 15px;
+   padding: 0.5em;
+   font-size: 1.2em;
+   width: 100%;
+
+  }
+
   &__left {
     grid-column: 1;
   }
@@ -59,6 +69,25 @@
   &__video {
     max-width: 500px;
     width: 100%;
+  }
+
+  &__button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__edit-btn, &__delete-btn {
+    margin: 0.8em;
+    padding: 0.8em;
+    background-color: $secondary-color-darken;
+    color: $light;
+    border-radius: 50%;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: $primary-color;
+      cursor: pointer;
+    }
   }
 
   &__footer {
