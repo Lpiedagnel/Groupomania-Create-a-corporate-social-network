@@ -32,15 +32,16 @@ const Card = ({ post }) => {
 
   return (
     <li
-      className="card__container"
+      className="card"
       key={post._id}
     >
       {isLoading ? (
-        <i className="card__loading fas fa-spinner fa-spin"></i>
+        <i className="fas fa-spinner fa-spin"></i>
       ) : (
         <>
           <div className="card__left">
             <img
+            className="card__avatar"
               src={
                 !isEmpty(usersData[0]) &&
                 usersData
@@ -51,17 +52,15 @@ const Card = ({ post }) => {
                   .join("")
               }
               alt="poster-pic"
-              className="card__avatar"
             />
           </div>
           <div className="card__right">
             <div className="card__header">
-              <div className="card__user">
-                <h3 className="card__username">
+              <div className="card__name-section">
+                <h3 className="card__name-title">
                   {!isEmpty(usersData[0]) &&
                     usersData.map((user) => {
-                      if (user._id === post.posterId)
-                        return user.firstName + " " + user.lastName
+                      if (user._id === post.posterId) return (user.firstName + ' ' + user.lastName)
                       else return null
                     })}
                 </h3>
@@ -74,19 +73,17 @@ const Card = ({ post }) => {
               </div>
               <span className="card__date">{dateParser(post.createdAt)}</span>
             </div>
-            {isUpdated === false && (
-              <p className="card__text">{post.message}</p>
-            )}
+            {isUpdated === false && <p className="card__message">{post.message}</p>}
             {isUpdated && (
               <div className="card__update">
                 <textarea
+                className="card__textarea"
                   defaultValue={post.message}
                   onChange={(e) => setTextUpdate(e.target.value)}
-                  className="card__textarea"
                 />
-                <div className="card__btn-container">
+                <div className="card__button-container">
                   <button
-                    className="card__btn btn"
+                    className="btn card__update-btn"
                     onClick={updateItem}
                   >
                     Valider modification
@@ -98,11 +95,12 @@ const Card = ({ post }) => {
               <img
                 src={post.picture}
                 alt="card-pic"
-                className="card__img"
+                className="card__picture"
               />
             )}
             {post.video && (
               <iframe
+              className="card__video"
                 width="500"
                 height="300"
                 src={post.video}
@@ -110,30 +108,21 @@ const Card = ({ post }) => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 title={post._id}
-                className="card__video"
               ></iframe>
             )}
-            
-            <div className="card__footer">
-              {/* If the same user, he can modified the post */}
-              {userData._id === post.posterId && (
-                <div className="card__btn-container">
-                  <div
-                    className="card__update"
-                    onClick={() => setIsUpdated(!isUpdated)}
-                  >
-                    <i className="card__edit-btn fa-solid fa-pen-to-square"></i>
-                  </div>
-                  <DeleteCard id={post._id} />
+            {/* If the same user, he can modified the post */}
+            {userData._id === post.posterId && (
+              <div className="card__button-container">
+                <div onClick={() => setIsUpdated(!isUpdated)}>
+                <i className="card__edit-btn fas fa-pencil-alt"></i>
                 </div>
-              )}
-
-              <div className="comment-ico">
-                <i
-                  onClick={() => setShowComments(!showComments)}
-                  class="fa-solid fa-comment"
-                ></i>
-                <span>{post.comments.length}</span>
+                <DeleteCard id={post._id} />
+              </div>
+            )}
+            <div className="card__footer">
+              <div className="card__comment-ico">
+                <i onClick={() => setShowComments(!showComments)} className="card__comment-btn fas fa-comment-dots"></i>
+                <span className="card__comment-span">{post.comments.length}</span>
               </div>
               <LikeButton post={post} />
             </div>

@@ -35,7 +35,7 @@ const FollowHandler = ({ idToFollow, type }) => {
             <button className="unfollow-btn">Abonné</button>
           )}
           {type == "card" && (
-            <i className="fas fa-check-circle"></i>
+            <i className="follow-handler__card fas fa-check-circle"></i>
           )}
         </span>
       )}
@@ -45,7 +45,7 @@ const FollowHandler = ({ idToFollow, type }) => {
             <button className="follow-btn">Suivre</button>
           )}
           {type == "card" && (
-            <i className="far fa-check-circle"></i>
+            <i className="follow-handler__card far fa-check-circle"></i>
           )}
         </span>
       )}

@@ -25,20 +25,20 @@ const LikeButton = ({ post }) => {
   }, [uid, post.likers, liked])
 
   return (
-    <div className="like-container">
+    <div className="like__container">
       {uid && liked === false && (
         <i
           onClick={like}
-          class="fa-regular fa-heart"
+          class="like__like-btn fa-regular fa-heart"
         ></i>
       )}
       {uid && liked === true && (
         <i
           onClick={unlike}
-          class="fa-solid fa-heart"
+          class="like__unlike-btn fa-solid fa-heart"
         ></i>
       )}
-      <span>{post.likers.length}</span>
+      <span class="like__span">{post.likers.length}</span>
     </div>
   )
 }

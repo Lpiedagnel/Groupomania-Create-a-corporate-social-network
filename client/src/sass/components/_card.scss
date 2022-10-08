@@ -1,72 +1,89 @@
 .card {
-  &__container {
-    background-color: $light;
-    border-radius: 5px;
-    border: solid 3px $secondary-color-darken;
-    margin: 20px 0;
-    display: grid;
-    grid-template-columns: 1fr 5fr;
-  }
-
-  &__loading {
-    font-size: 2em;
-    text-align: center;
-  }
+  border: solid 2px $secondary-color;
+  background-color: $light;
+  border-radius: 15px;
+  padding: 1em;
+  margin: 1em;
+  display: grid;
+  grid-template-columns: 90px 1fr;
 
   &__left {
-    padding: 1em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: $secondary-color;
+    grid-column: 1;
   }
 
   &__avatar {
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
     object-fit: cover;
   }
 
   &__right {
-    padding: 1em;
+    grid-column: 2;
   }
 
   &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  &__user {
-    margin: 0;
+  &__name-section {
+    display: flex;
+    align-items: center;
   }
 
-  &__username {
-    font-weight: bold;
+  &__name-title {
     color: $secondary-color-darken;
-    margin: 0;
+    margin-right: 0.5em;
+    font-size: 1.2em;
   }
 
   &__date {
-    font-style: italic;
     color: $tertiary-color;
+    font-style: italic;
+    font-size: 1em;
   }
 
-  &__update {
+  &__message {
+    line-height: 1.4em;
+    font-size: 1.1em;
   }
 
-  &__text {
-    color: $dark;
-  }
-
-  &__img {
-    width: 100%;
+  &__picture {
+    width: 85%;
     max-width: 500px;
-    max-height: 500px;
     object-fit: cover;
+  }
+
+  &__video {
+    max-width: 500px;
+    width: 100%;
   }
 
   &__footer {
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px;
+  }
+
+  &__comment-ico {
     font-size: 1.2em;
+  }
+
+  &__comment-btn {
+    transition: 0.3s;
+    color: $primary-color;
+
+    &:hover {
+      cursor: pointer;
+      color: $primary-color-darken;
+    }
+  }
+
+  &__comment-span {
     color: $secondary-color-darken;
+    margin-left: 0.5em;
   }
 }

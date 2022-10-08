@@ -1,0 +1,12 @@
+.follow-handler {
+    &__card {
+        color: $primary-color;
+        font-size: 1.2em;
+        transition: 0.3s;
+
+        &:hover {
+            cursor: pointer;
+            color: $primary-color-darken;
+        }
+    }
+}
