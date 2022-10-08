@@ -3,6 +3,7 @@ import axios from "axios"
 export const GET_USER = "GET_USER"
 export const UPLOAD_PICTURE = "UPLOAD_PICTURE"
 export const UPDATE_BIO = "UPDATE_BIO"
+export const UPDATE_JOB = "UPDATE_JOB"
 export const FOLLOW_USER = "FOLLOW_USER"
 export const UNFOLLOW_USER = "UNFOLLOW_USER"
 
@@ -48,6 +49,20 @@ export const updateBio = (userId, bio) => {
     })
       .then((res) => {
         dispatch({ type: UPDATE_BIO, payload: bio })
+      })
+      .catch((err) => console.log(err))
+  }
+}
+
+export const updateJob = (userId, job) => {
+  return (dispatch) => {
+    return axios({
+      method: "put",
+      url: `${process.env.REACT_APP_API_URL}api/user/` + userId,
+      data: { job },
+    })
+      .then((res) => {
+        dispatch({ type: UPDATE_JOB, payload: job })
       })
       .catch((err) => console.log(err))
   }

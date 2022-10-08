@@ -2,22 +2,29 @@ import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 import UploadImg from "./UploadImg"
 import { useState } from "react"
-import { updateBio } from "../../actions/user.actions"
+import { updateBio, updateJob } from "../../actions/user.actions"
 import { dateParser } from "../Utils"
 import FollowHandler from "./FollowHandler"
 
 const UpdateProfil = () => {
   const [bio, setBio] = useState("")
-  const [updateForm, setUpdateForm] = useState(false)
+  const [job, setJob] = useState("")
+  const [updateBioForm, setUpdateBioForm] = useState(false)
+  const [updateJobForm, setUpdateJobForm] = useState(false)
   const userData = useSelector((state) => state.userReducer)
   const usersData = useSelector((state) => state.usersReducer)
   const dispatch = useDispatch()
   const [followingPopup, setFollowingPopup] = useState(false)
   const [followersPopup, setFollowersPopup] = useState(false)
 
-  const handleUpdate = () => {
+  const handleBioUpdate = () => {
     dispatch(updateBio(userData._id, bio))
-    setUpdateForm(false)
+    setUpdateBioForm(false)
+  }
+
+  const handleJobUpdate = () => {
+    dispatch(updateJob(userData._id, job))
+    setUpdateJobForm(false)
   }
 
   return (
@@ -37,20 +44,50 @@ const UpdateProfil = () => {
         </div>
 
         <div className="profil__right-part">
-          <div className="profil__bio">
-            <h3 className="profil__title-section">Bio</h3>
-            {updateForm === false && (
+        <div className="profil__job">
+            <h3 className="profil__title-section">Poste au sein de Groupomania</h3>
+            {updateJobForm === false && (
               <>
-                <p onClick={() => setUpdateForm(!updateForm)}>{userData.bio}</p>
+                <p onClick={() => setUpdateJobForm(!updateJobForm)}>{userData.job}</p>
                 <button
                   className="profil__btn btn"
-                  onClick={() => setUpdateForm(!updateForm)}
+                  onClick={() => setUpdateJobForm(!updateJobForm)}
+                >
+                  Modifier poste
+                </button>
+              </>
+            )}
+            {updateJobForm && (
+              <>
+                <textArea
+                  className="profil__area"
+                  type="text"
+                  defaultValue={userData.job}
+                  onChange={(e) => setJob(e.target.value)}
+                ></textArea>
+                <button
+                  className="profil__btn btn"
+                  onClick={handleJobUpdate}
+                >
+                  Valider modification
+                </button>
+              </>
+            )}
+          </div>
+          <div className="profil__bio">
+            <h3 className="profil__title-section">Bio</h3>
+            {updateBioForm === false && (
+              <>
+                <p onClick={() => setUpdateBioForm(!updateBioForm)}>{userData.bio}</p>
+                <button
+                  className="profil__btn btn"
+                  onClick={() => setUpdateBioForm(!updateBioForm)}
                 >
                   Modifier bio
                 </button>
               </>
             )}
-            {updateForm && (
+            {updateBioForm && (
               <>
                 <textArea
                   className="profil__area"
@@ -60,7 +97,7 @@ const UpdateProfil = () => {
                 ></textArea>
                 <button
                   className="profil__btn btn"
-                  onClick={handleUpdate}
+                  onClick={handleBioUpdate}
                 >
                   Valider modification
                 </button>
