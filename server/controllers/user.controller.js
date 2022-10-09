@@ -1,3 +1,4 @@
+const PostModel = require("../models/post.model")
 const UserModel = require("../models/user.model")
 const ObjectId = require("mongoose").Types.ObjectId
 
@@ -28,7 +29,7 @@ module.exports.updateUser = async (req, res) => {
       {
         $set: {
           bio: req.body.bio,
-          job: req.body.job
+          job: req.body.job,
         },
       },
       { new: true, upsert: true, setDefaultsOnInsert: true }
@@ -47,17 +48,41 @@ module.exports.updateUser = async (req, res) => {
   }
 }
 
-module.exports.deleteUser = async (req, res) => {
-  // If ID not found
-  if (!ObjectId.isValid(req.params.id))
-    return res.status(400).send("ID unknown: " + req.params.id)
+// module.exports.deleteUser = async (req, res) => {
+//   // If ID not found
+//   if (!ObjectId.isValid(req.params.id))
+//     return res.status(400).send("ID unknown: " + req.params.id)
 
-  try {
-    await UserModel.remove({ _id: req.params.id }).exec()
-    res.status(200).json({ message: "Successfully deleted. " })
-  } catch (err) {
-    return res.status(500).json({ message: err })
-  }
+//   try {
+//     await UserModel.remove({ _id: req.params.id }).exec()
+//     res.status(200).json({ message: "Successfully deleted. " })
+//   } catch (err) {
+//     return res.status(500).json({ message: err })
+//   }
+// }
+
+module.exports.deleteUser = async (req, res, next) => {
+  UserModel.findOne({ _id: req.params.id }).then((user) => {
+    if (req.body.isAdmin !== true) {
+      res.status(403).json({
+        message:
+          "Seul l'administrateur peut supprimer un compte. Veuillez contacter celui-ci pour faire une demande.",
+      })
+    } else {
+      // Before deleting the user, we have to delete all his posts.
+      PostModel.deleteMany({ posterId: user._id })
+        .then(() => {
+          console.log("Message(s) supprimé(s)")
+          // Finally, delete the user
+          UserModel.deleteOne({ _id: user._id })
+            .then(() => {
+              res.status(200).json({ message: "Utilisateur supprimé avec ses messages !" })
+            })
+            .catch((error) => res.status(401).json({ error }))
+        })
+        .catch((error) => res.status(401).json({ error }))
+    }
+  })
 }
 
 module.exports.follow = async (req, res) => {
