@@ -122,6 +122,7 @@ const Card = ({ post }) => {
                 <DeleteCard
                   id={post._id}
                   userId={userData._id}
+                  isAdmin={userData.isAdmin}
                 />
               </div>
             ) : null}

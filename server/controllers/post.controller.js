@@ -59,12 +59,11 @@ module.exports.updatePost = (req, res) => {
 module.exports.deletePost = (req, res, next) => {
   PostModel.findOne({ _id: req.params.id })
     .then((post) => {
-      if (post.posterId !== req.body.userId) {
-        res
-          .status(403)
-          .json({
-            message: "Vous n'avez pas la permission de supprimer ce message.",
-          })
+      console.log(req.body)
+      if (post.posterId !== req.body.userId && req.body.isAdmin == false) {
+        res.status(403).json({
+          message: "Vous n'avez pas la permission de supprimer ce message.",
+        })
       } else {
         PostModel.deleteOne({ _id: req.params.id })
           .then(() => {

@@ -1,6 +1,5 @@
 import React, { useContext } from "react"
 import { useSelector } from "react-redux"
-import AdminPosts from "../components/Admin/AdminPosts"
 import AdminUsers from "../components/Admin/AdminUsers"
 import { UidContext } from "../components/AppContext"
 import LeftNav from "../components/LeftNav"
@@ -28,7 +27,6 @@ const Admin = () => {
                     </div>
                     <div className="admin__main">
                         <AdminUsers />
-                        <AdminPosts></AdminPosts>
                     </div>
                 </>
             ) : null
