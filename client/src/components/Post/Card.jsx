@@ -20,7 +20,7 @@ const Card = ({ post }) => {
 
   const updateItem = async () => {
     if (textUpdate) {
-      dispatch(updatePost(post._id, textUpdate))
+      dispatch(updatePost(post._id, textUpdate, userData._id, userData.isAdmin))
     }
     setIsUpdated(false)
   }

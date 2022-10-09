@@ -28,38 +28,30 @@ module.exports.createPost = async (req, res) => {
   }
 }
 
-module.exports.updatePost = (req, res) => {
-  // If ID not found
-  if (!ObjectId.isValid(req.params.id))
-    return res.status(400).send("ID unknown: " + req.params.id)
-
-  const updatedRecord = {
-    message: req.body.message,
-  }
-
-  PostModel.findByIdAndUpdate(
-    req.params.id,
-    { $set: updatedRecord },
-    { new: true }
-  )
-    .then((docs) => res.status(201).json(docs))
-    .catch((err) => res.status(500).send({ message: err }))
+module.exports.updatePost = (req, res, next) => {
+  PostModel.findOne({ _id: req.params.id }).then((post) => {
+    if (post.posterId !== req.body.userId && req.body.isAdmin == false) {
+      res.status(403).json({
+        message: "Vous n'avez pas la permission de modifier ce message.",
+      })
+    } else {
+      const updatedRecord = {
+        message: req.body.message,
+      }
+      PostModel.findByIdAndUpdate(
+        req.params.id,
+        { $set: updatedRecord },
+        { new: true }
+      )
+        .then((docs) => res.status(201).json(docs))
+        .catch((err) => res.status(500).send({ message: err }))
+    }
+  })
 }
-
-// module.exports.deletePost = (req, res) => {
-//   // If ID not found
-//   if (!ObjectId.isValid(req.params.id))
-//     return res.status(400).send("ID unknown: " + req.params.id)
-
-//   PostModel.findByIdAndRemove(req.params.id)
-//     .then((docs) => res.status(200).json(docs))
-//     .catch((err) => res.status(500).send({ message: err }))
-// }
 
 module.exports.deletePost = (req, res, next) => {
   PostModel.findOne({ _id: req.params.id })
     .then((post) => {
-      console.log(req.body)
       if (post.posterId !== req.body.userId && req.body.isAdmin == false) {
         res.status(403).json({
           message: "Vous n'avez pas la permission de supprimer ce message.",
