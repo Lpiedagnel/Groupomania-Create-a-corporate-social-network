@@ -8,7 +8,6 @@ const userData = useSelector((state) => state.userReducer)
   const dispatch = useDispatch()
 
   const deleteQuote = () => {
-    console.log(props.isAdmin)
     dispatch(deletePost(props.id, props.userId, props.isAdmin))
   }
 

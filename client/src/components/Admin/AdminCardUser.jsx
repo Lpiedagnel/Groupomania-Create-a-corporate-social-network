@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { useSelector } from "react-redux"
-import { isEmpty } from "../Utils"
+import DeleteUser from "./DeleteUser"
 
 const AdminCardUser = ({ user }) => {
-  const usersData = useSelector((state) => state.usersReducer)
   const userData = useSelector((state) => state.userReducer)
+
+
 
   return (
     <li
@@ -29,7 +30,12 @@ const AdminCardUser = ({ user }) => {
           </a>
         </p>
       </div>
-      <i class="admin-card-user__delete fas fa-trash"></i>
+      <DeleteUser 
+      id={user._id}
+      isAdmin={userData.isAdmin}
+      firstName={user.firstName}
+      lastName={user.lastName}
+      />
     </li>
   )
 }
