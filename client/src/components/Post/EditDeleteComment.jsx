@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux"
 import { deleteComment, editComment } from "../../actions/post.actions"
 import { UidContext } from "../AppContext"
 
-const EditDeleteComment = ({ comment, postId }) => {
+const EditDeleteComment = ({ comment, postId, isAdmin }) => {
   const [isAuthor, setIsAuthor] = useState(false)
   const [edit, setEdit] = useState(false)
   const [text, setText] = useState("")
@@ -36,19 +36,19 @@ const EditDeleteComment = ({ comment, postId }) => {
 
   return (
     <div className="edit-comment">
-      {isAuthor && edit === false && (
+      {(isAuthor || isAdmin) && edit === false && (
         <span onClick={() => setEdit(!edit)}>
-<i className="edit-comment__btn fas fa-pencil-alt"></i>
+          <i className="edit-comment__btn fas fa-pencil-alt"></i>
         </span>
       )}
-      {isAuthor && edit && (
+      {(isAuthor || isAdmin) && edit && (
         <form
           action=""
           onSubmit={handleEdit}
           className="edit-comment__form"
         >
           <label
-          className="edit-comment__label"
+            className="edit-comment__label"
             htmlFor="text"
             onClick={() => {
               setEdit(!edit)
@@ -58,7 +58,7 @@ const EditDeleteComment = ({ comment, postId }) => {
           </label>
           <br />
           <input
-          className="edit-comment__input"
+            className="edit-comment__input"
             type="text"
             name="text"
             onChange={(e) => {
@@ -75,10 +75,10 @@ const EditDeleteComment = ({ comment, postId }) => {
                 }
               }}
             >
-            <i class="edit-comment__delete fas fa-trash"></i>
+              <i class="edit-comment__delete fas fa-trash"></i>
             </span>
             <input
-            className="btn edit-comment__submit"
+              className="btn edit-comment__submit"
               type="submit"
               value="Valider modification"
             />

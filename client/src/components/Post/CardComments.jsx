@@ -76,6 +76,7 @@ const CardComments = ({ post }) => {
               <EditDeleteComment
                 comment={comment}
                 postId={post._id}
+                isAdmin={userData.isAdmin}
               />
             </div>
           </div>

@@ -5,8 +5,6 @@ import DeleteUser from "./DeleteUser"
 const AdminCardUser = ({ user }) => {
   const userData = useSelector((state) => state.userReducer)
 
-
-
   return (
     <li
       className="admin-card-user"
@@ -30,11 +28,11 @@ const AdminCardUser = ({ user }) => {
           </a>
         </p>
       </div>
-      <DeleteUser 
-      id={user._id}
-      isAdmin={userData.isAdmin}
-      firstName={user.firstName}
-      lastName={user.lastName}
+      <DeleteUser
+        id={user._id}
+        isAdmin={userData.isAdmin}
+        firstName={user.firstName}
+        lastName={user.lastName}
       />
     </li>
   )
