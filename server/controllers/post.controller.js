@@ -46,14 +46,36 @@ module.exports.updatePost = (req, res) => {
     .catch((err) => res.status(500).send({ message: err }))
 }
 
-module.exports.deletePost = (req, res) => {
-  // If ID not found
-  if (!ObjectId.isValid(req.params.id))
-    return res.status(400).send("ID unknown: " + req.params.id)
+// module.exports.deletePost = (req, res) => {
+//   // If ID not found
+//   if (!ObjectId.isValid(req.params.id))
+//     return res.status(400).send("ID unknown: " + req.params.id)
 
-  PostModel.findByIdAndRemove(req.params.id)
-    .then((docs) => res.status(200).json(docs))
-    .catch((err) => res.status(500).send({ message: err }))
+//   PostModel.findByIdAndRemove(req.params.id)
+//     .then((docs) => res.status(200).json(docs))
+//     .catch((err) => res.status(500).send({ message: err }))
+// }
+
+module.exports.deletePost = (req, res, next) => {
+  PostModel.findOne({ _id: req.params.id })
+    .then((post) => {
+      if (post.posterId !== req.body.userId) {
+        res
+          .status(403)
+          .json({
+            message: "Vous n'avez pas la permission de supprimer ce message.",
+          })
+      } else {
+        PostModel.deleteOne({ _id: req.params.id })
+          .then(() => {
+            res.status(200).json({ message: "Message supprimé avec succès !" })
+          })
+          .catch((error) => res.status(401).json({ error }))
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ error })
+    })
 }
 
 module.exports.likePost = async (req, res) => {

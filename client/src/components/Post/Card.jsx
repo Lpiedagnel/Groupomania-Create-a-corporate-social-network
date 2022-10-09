@@ -41,7 +41,7 @@ const Card = ({ post }) => {
         <>
           <div className="card__left">
             <img
-            className="card__avatar"
+              className="card__avatar"
               src={
                 !isEmpty(usersData[0]) &&
                 usersData
@@ -60,7 +60,8 @@ const Card = ({ post }) => {
                 <h3 className="card__name-title">
                   {!isEmpty(usersData[0]) &&
                     usersData.map((user) => {
-                      if (user._id === post.posterId) return (user.firstName + ' ' + user.lastName)
+                      if (user._id === post.posterId)
+                        return user.firstName + " " + user.lastName
                       else return null
                     })}
                 </h3>
@@ -73,11 +74,13 @@ const Card = ({ post }) => {
               </div>
               <span className="card__date">{dateParser(post.createdAt)}</span>
             </div>
-            {isUpdated === false && <p className="card__message">{post.message}</p>}
+            {isUpdated === false && (
+              <p className="card__message">{post.message}</p>
+            )}
             {isUpdated && (
               <div className="card__update">
                 <textarea
-                className="card__textarea"
+                  className="card__textarea"
                   defaultValue={post.message}
                   onChange={(e) => setTextUpdate(e.target.value)}
                 />
@@ -100,7 +103,7 @@ const Card = ({ post }) => {
             )}
             {post.video && (
               <iframe
-              className="card__video"
+                className="card__video"
                 width="500"
                 height="300"
                 src={post.video}
@@ -110,19 +113,27 @@ const Card = ({ post }) => {
                 title={post._id}
               ></iframe>
             )}
-            {/* If the same user, he can modified the post */}
-            {userData._id === post.posterId && (
+            {/* If the same user (or admin), he can modified the post */}
+            {userData._id === post.posterId || userData.isAdmin ? (
               <div className="card__button-container">
                 <div onClick={() => setIsUpdated(!isUpdated)}>
-                <i className="card__edit-btn fas fa-pencil-alt"></i>
+                  <i className="card__edit-btn fas fa-pencil-alt"></i>
                 </div>
-                <DeleteCard id={post._id} />
+                <DeleteCard
+                  id={post._id}
+                  userId={userData._id}
+                />
               </div>
-            )}
+            ) : null}
             <div className="card__footer">
               <div className="card__comment-ico">
-                <i onClick={() => setShowComments(!showComments)} className="card__comment-btn fas fa-comment-dots"></i>
-                <span className="card__comment-span">{post.comments.length}</span>
+                <i
+                  onClick={() => setShowComments(!showComments)}
+                  className="card__comment-btn fas fa-comment-dots"
+                ></i>
+                <span className="card__comment-span">
+                  {post.comments.length}
+                </span>
               </div>
               <LikeButton post={post} />
             </div>
