@@ -38,4 +38,37 @@
         object-fit: cover;
         box-shadow: 0px 0px 0px 2px $secondary-color-darken;
     }
+
+    &__follow {
+        margin: auto;
+        width: 85%;
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1em;
+
+        @include mobile {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__item {
+        border: solid 2px $secondary-color;
+        background-color: $light;
+        border-radius: 15px;
+        padding: 1em;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        align-items: center;
+    }
+
+    &__avatar-follow {
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        object-fit: cover;
+        grid-column: 1;
+    }
 }

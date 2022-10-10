@@ -4,6 +4,10 @@
     margin: auto;
     padding: 2em;
 
+    &__brand {
+        width: 90%;
+    }
+
     &__title {
         color: $secondary-color-darken;
     }
