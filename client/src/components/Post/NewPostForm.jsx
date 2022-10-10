@@ -89,12 +89,16 @@ const NewPostForm = () => {
         <>
           <div className="post__data">
             <p className="post__follow">
-              <span>{userData.following ? userData.following.length : 0}</span>{" "}
+              <span className="post__span-follow">
+                {userData.following ? userData.following.length : 0}
+              </span>{" "}
               Abonnement
               {userData.following && userData.following.length > 1 ? "s" : null}
             </p>
             <p className="post__follow">
-              <span>{userData.followers ? userData.followers.length : 0}</span>{" "}
+              <span className="post__span-follow">
+                {userData.followers ? userData.followers.length : 0}
+              </span>{" "}
               Abonné
               {userData.followers && userData.followers.length > 1 ? "s" : null}
             </p>
@@ -108,18 +112,19 @@ const NewPostForm = () => {
               />
             </div>
           </NavLink>
-          <div className="post-form">
+          <div className="post__form">
             <textarea
               name="message"
               id="message"
               placeholder="Quoi de neuf ?"
               onChange={(e) => setMessage(e.target.value)}
               value={message}
-              className="post-form__textarea"
+              className="post__textarea"
+              maxLength="500"
             />
             {/* message preview */}
             {message || postPicture || video.length > 20 ? (
-              <li className="card__container">
+              <li className="card">
                 <div className="card__left">
                   <img
                     src={userData.picture}
@@ -129,8 +134,8 @@ const NewPostForm = () => {
                 </div>
                 <div className="card__right">
                   <div className="card__header">
-                    <div className="card__username">
-                      <h3>
+                    <div className="card__name-section">
+                      <h3 className="card__name-title">
                         {userData.firstName} {userData.lastName}
                       </h3>
                     </div>
@@ -139,11 +144,11 @@ const NewPostForm = () => {
                     </span>
                   </div>
                   <div className="card__content">
-                    <p className="card__text">{message}</p>
+                    <p className="card__message">{message}</p>
                     <img
                       src={postPicture}
                       alt=""
-                      className="card__img"
+                      className="card__picture"
                     />
                     {video && (
                       <iframe
@@ -159,12 +164,18 @@ const NewPostForm = () => {
                 </div>
               </li>
             ) : null}
-            <div className="footer-form">
-              <div className="icon">
+            <div className="post__footer">
+              <div className="post__upload-container">
                 {isEmpty(video) && (
                   <>
-                  <i className="fas fa-image"></i>
+                    <label
+                      className="post__label-file"
+                      htmlFor="file-upload"
+                    >
+                      <i className="post__btn-file fas fa-image"></i>
+                    </label>
                     <input
+                      className="post__input-file"
                       type="file"
                       name="file"
                       id="file-upload"
@@ -176,23 +187,28 @@ const NewPostForm = () => {
                   </>
                 )}
                 {video && (
-                  <button onClick={() => setVideo("")}>Supprimer vidéo</button>
+                  <button
+                    className="post__btn btn"
+                    onClick={() => setVideo("")}
+                  >
+                    Supprimer vidéo
+                  </button>
                 )}
               </div>
-              {!isEmpty(error.format) && <p>{error.format}</p>}
-              {!isEmpty(error.maxSize) && <p>{error.maxSize}</p>}
-              <div className="btn-send">
+              {!isEmpty(error.format) && <p className="post__error">{error.format}</p>}
+              {!isEmpty(error.maxSize) && <p className="post__error">{error.maxSize}</p>}
+              <div className="post__btn-file">
                 {message || postPicture || video.length > 20 ? (
                   <button
                     onClick={cancelPost}
-                    className="cancel"
+                    className="btn post__cancel"
                   >
                     Annuler message
                   </button>
                 ) : null}
                 <button
                   onClick={handlePost}
-                  className="send"
+                  className="btn post__submit "
                 >
                   Envoyer
                 </button>

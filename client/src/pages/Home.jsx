@@ -25,7 +25,6 @@ const Home = () => {
             <div className="home__right-side">
               <div className="home__right-side-container">
                 <div className="home__wrapper">
-                  {/* <Trends /> */}
                   {/* {uid && <FriendsHint />} */}
                 </div>
               </div>
