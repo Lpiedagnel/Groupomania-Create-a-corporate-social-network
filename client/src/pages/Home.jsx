@@ -4,7 +4,6 @@ import { UidContext } from "../components/AppContext"
 import LeftNav from "../components/LeftNav"
 import NewPostForm from "../components/Post/NewPostForm"
 import Thread from "../components/Post/Thread"
-import Trends from "../components/Trends"
 import FriendsHint from "../components/Profil/FriendsHint"
 import Welcome from "../components/Welcome"
 

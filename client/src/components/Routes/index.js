@@ -7,7 +7,6 @@ import {
 } from "react-router-dom"
 import Home from "../../pages/Home"
 import Profil from "../../pages/Profil"
-import Trending from "../../pages/Trending"
 import Admin from "../../pages/Admin"
 import Navbar from "../../components/Navbar"
 import { UidContext } from "../AppContext"
@@ -34,11 +33,6 @@ const index = () => {
           path="/profil"
           exact
           element={<Profil />}
-        />
-        <Route
-          path="/trending"
-          exact
-          element={<Trending />}
         />
         <Route
           path="/admin"

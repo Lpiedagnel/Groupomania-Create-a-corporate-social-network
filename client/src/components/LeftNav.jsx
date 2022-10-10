@@ -15,11 +15,6 @@ const LeftNav = () => {
           <p className="leftNav__text">Accueil</p>
         </NavLink>
         <br />
-        <NavLink to="/trending">
-          <i className="leftNav__icon fa-solid fa-rocket"></i>
-          <p className="leftNav__text">Tendances</p>
-        </NavLink>
-        <br />
         <NavLink to="/profil">
           <i className="leftNav__icon fa-solid fa-user"></i>
           <p className="leftNav__text">Profil</p>
