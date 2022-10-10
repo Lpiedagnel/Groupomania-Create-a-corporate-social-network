@@ -1,0 +1,14 @@
+.welcome {
+    width: 80%;
+    text-align: center;
+    margin: auto;
+    padding: 2em;
+
+    &__title {
+        color: $secondary-color-darken;
+    }
+
+    &__resume {
+        color: $tertiary-color;
+    }
+}

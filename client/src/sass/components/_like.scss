@@ -1,0 +1,20 @@
+.like {
+    
+
+    &__like-btn, &__unlike-btn {
+        color: $primary-color;
+        transition: 0.3s;
+        font-size: 1.2em;
+
+        &:hover {
+            color: $primary-color-darken;
+            cursor: pointer;
+        }
+    }
+
+    &__span {
+        color: $secondary-color-darken;
+        margin-left: 0.5em;
+        font-size: 1.2em;
+    }
+}

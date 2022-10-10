@@ -1,0 +1,118 @@
+.card {
+  border: solid 2px $secondary-color;
+  background-color: $light;
+  border-radius: 15px;
+  padding: 1em;
+  margin: 1em;
+  display: grid;
+  grid-template-columns: 90px 1fr;
+
+  &__textarea {
+    border: solid 2px $secondary-color;
+    outline: none;
+    border-radius: 15px;
+    padding: 0.5em;
+    font-size: 1.2em;
+    width: 100%;
+  }
+
+  &__left {
+    grid-column: 1;
+  }
+
+  &__avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &__right {
+    grid-column: 2;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__name-section {
+    display: flex;
+    align-items: center;
+  }
+
+  &__name-title {
+    color: $secondary-color-darken;
+    margin-right: 0.5em;
+    font-size: 1.2em;
+  }
+
+  &__date {
+    color: $tertiary-color;
+    font-style: italic;
+    font-size: 1em;
+  }
+
+  &__message {
+    line-height: 1.4em;
+    font-size: 1.1em;
+  }
+
+  &__picture {
+    width: 85%;
+    max-width: 500px;
+    object-fit: cover;
+  }
+
+  &__video {
+    max-width: 500px;
+    width: 100%;
+  }
+
+  &__button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__edit-btn,
+  &__delete-btn {
+    margin: 0.8em;
+    padding: 0.8em;
+    background-color: $secondary-color-darken;
+    color: $light;
+    border-radius: 50%;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: $primary-color;
+      cursor: pointer;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px;
+  }
+
+  &__comment-ico {
+    font-size: 1.2em;
+  }
+
+  &__comment-btn {
+    transition: 0.3s;
+    color: $primary-color;
+
+    &:hover {
+      cursor: pointer;
+      color: $primary-color-darken;
+    }
+  }
+
+  &__comment-span {
+    color: $secondary-color-darken;
+    margin-left: 0.5em;
+  }
+}

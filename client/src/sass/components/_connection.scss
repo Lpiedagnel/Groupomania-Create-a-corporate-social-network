@@ -1,0 +1,62 @@
+.connection {
+  width: 80%;
+  margin: auto;
+  grid-column: 2;
+
+  &__list {
+    background-color: $secondary-color;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  &__item {
+    color: $tertiary-color;
+    padding: 0.5em;
+    transition: 0.3s;
+    font-weight: bold;
+
+    &--active {
+      background-color: $secondary-color-darken;
+      color: $light;
+    }
+
+    &:hover {
+      background-color: $secondary-color-darken;
+      color: $light;
+      cursor: pointer;
+    }
+  }
+}
+
+.signup,
+.signin {
+
+  &__success {
+    color: $success;
+  }
+
+  &__form {
+    background-color: $secondary-color;
+    padding: 2em;
+  }
+
+  &__error {
+    color: $error;
+    font-weight: bold;
+  }
+
+  &__label {
+    color: $tertiary-color;
+    margin: 5px;
+  }
+
+  &__input {
+    border-radius: 5px;
+    border: $secondary-color-darken 2px solid;
+    padding: 5px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

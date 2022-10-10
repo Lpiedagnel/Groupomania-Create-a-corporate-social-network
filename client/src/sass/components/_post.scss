@@ -1,0 +1,96 @@
+.post {
+  border: solid 2px $secondary-color-darken;
+  background-color: $secondary-color;
+  border-radius: 15px;
+  padding: 1em;
+  margin: 1em;
+  position: relative;
+
+  &__data {
+    position: absolute;
+    right: 42px;
+    text-align: right;
+    font-style: italic;
+    line-height: 0.5em;
+  }
+
+  &__span-follow {
+    font-weight: bold;
+  }
+
+  &__user-info {
+    text-align: center;
+  }
+
+  &__user-avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &__form {
+    position: relative;
+  }
+
+  &__textarea {
+    width: 100%;
+    font-size: 1.1em;
+    padding: 1em;
+    border-radius: 15px;
+    border: solid 2px $secondary-color-darken;
+    outline: none;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__upload-container {
+    margin: 0.7em;
+  }
+
+  &__label-file {
+    cursor: pointer;
+  }
+
+  &__btn-file {
+    color: $secondary-color-darken;
+    transition: 0.3s;
+    font-size: 1.5em;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
+  &__input-file {
+    display: none;
+  }
+
+  &__cancel {
+    margin: auto 1em;
+    background-color: $secondary-color;
+    border: solid 2px $secondary-color-darken;
+    color: $dark;
+    font-size: 0.8em;
+    padding: 0.6em;
+
+    &:hover {
+      color: $light;
+    }
+  }
+
+  &__submit {
+    font-size: 0.8em;
+    padding: 0.6em;
+  }
+
+  &__error {
+    color: $error;
+    font-weight: bold;
+  }
+}

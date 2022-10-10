@@ -1,7 +1,0 @@
-/* Responsive Mixins */
-
-@mixin responsive {
-    @media (max-width: 768px) { 
-      @content; 
-    }
-  }

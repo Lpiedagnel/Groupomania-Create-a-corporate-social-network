@@ -1,0 +1,35 @@
+.friends-hint {
+    grid-column: 3;
+    border-radius: 15px;
+    background-color: $secondary-color;
+    margin: auto;
+    width: 80%;
+    padding: 1em;
+
+    &__title {
+        color: $tertiary-color;
+    }
+
+    &__list {
+        list-style: none;
+        line-height: 3.5em;
+    }
+
+    &__item {
+        display: grid;
+        grid-template-columns: 20% 50% 30%;
+        align-items: center;
+    }
+
+    &__avatar {
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    &__name {
+        font-weight: bold;
+        color: $tertiary-color;
+    }
+}
