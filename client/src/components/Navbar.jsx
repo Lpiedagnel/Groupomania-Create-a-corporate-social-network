@@ -32,16 +32,49 @@ const Navbar = () => {
         </div>
         {uid ? (
           <ul className="navbar__list">
-            <li className="navbar__item">
-              <NavLink className="navbar__link" to="/profil">Bienvenue {userData.firstName}</NavLink>
+            <li className="navbar__item navbar__item--desktop">
+              <NavLink
+                className="navbar__link "
+                to="/profil"
+              >
+                Bienvenue {userData.firstName}
+              </NavLink>
             </li>
+            <li className="navbar__item navbar__item--responsive">
+              <NavLink
+                className="navbar__link"
+                to="/profil"
+              >
+                <i class="fas fa-user"></i>
+              </NavLink>
+            </li>
+            {userData.isAdmin ? (
+              <li className="navbar__item navbar__item--responsive">
+                <NavLink
+                  className="navbar__link"
+                  to="/admin"
+                >
+                  <i class="fas fa-tools"></i>
+                </NavLink>
+              </li>
+            ) : null}
             <Logout />
           </ul>
         ) : (
           <ul className="navbar__list">
             <li className="navbar__item">
-              <NavLink className="navbar__link navbar__link--desktop" to="/profil">Se connecter</NavLink>
-              <NavLink className="navbar__link navbar__link--responsive" to="/profil"><i class="fas fa-sign-in-alt"></i></NavLink>
+              <NavLink
+                className="navbar__link navbar__link--desktop"
+                to="/profil"
+              >
+                Se connecter
+              </NavLink>
+              <NavLink
+                className="navbar__link navbar__link--responsive"
+                to="/profil"
+              >
+                <i class="fas fa-sign-in-alt"></i>
+              </NavLink>
             </li>
           </ul>
         )}

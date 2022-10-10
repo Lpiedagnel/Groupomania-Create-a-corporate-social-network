@@ -20,7 +20,6 @@
         box-sizing: content-box;
 
         &:hover {
-          background-color: $primary-color-darken;
           color: $light-darken;
           cursor: pointer;
         }
@@ -50,8 +49,19 @@
     padding: 1em 4em;
     margin: 0%;
 
+    &--responsive {
+      display: none;
+    }
+
     @include tablet {
       padding: 1em;
+
+      &--responsive {
+        display: block;
+      }
+      &--desktop {
+        display: none;
+      }
     }
   }
 
@@ -59,15 +69,14 @@
   a,
   &__item {
     color: $light;
-
-    &:hover {
-      background-color: $primary-color-darken;
-      color: $light-darken;
-      cursor: pointer;
-    }
   }
 
   &__link {
+    transition: 0.3s;
+    &:hover {
+      cursor: pointer;
+      color: $light-darken;
+    }
     &--responsive {
       display: none;
       font-size: 1.3em;
@@ -80,6 +89,14 @@
       &--responsive {
         display: block;
       }
+    }
+  }
+
+  &__logout {
+    transition: 0.3s;
+    &:hover {
+      cursor: pointer;
+      color: $light-darken;
     }
   }
 }

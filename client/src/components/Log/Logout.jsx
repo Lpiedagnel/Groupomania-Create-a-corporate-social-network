@@ -23,12 +23,20 @@ const Logout = () => {
   }
 
   return (
+    <>
     <li
-      className="navbar__item"
+      className="navbar__item navbar__item--desktop navbar__logout"
       onClick={logout}
     >
       Se déconnecter
     </li>
+    <li
+      className="navbar__item navbar__item--responsive navbar__logout"
+      onClick={logout}
+    >
+      <i class="fas fa-sign-out-alt"></i>
+    </li>
+    </>
   )
 }
 
