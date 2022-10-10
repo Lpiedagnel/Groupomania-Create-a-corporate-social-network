@@ -13,6 +13,27 @@
   &__logo {
     &-img {
       height: 1.4em;
+
+      &--responsive {
+        display: none;
+        padding: 1em 100%;
+        box-sizing: content-box;
+
+        &:hover {
+          background-color: $primary-color-darken;
+          color: $light-darken;
+          cursor: pointer;
+        }
+      }
+
+      @include mobile {
+        &--desktop {
+          display: none;
+        }
+        &--responsive {
+          display: block;
+        }
+      }
     }
   }
 
@@ -28,18 +49,37 @@
   &__item {
     padding: 1em 4em;
     margin: 0%;
+
+    @include tablet {
+      padding: 1em;
+    }
   }
 
   // All Links
   a,
   &__item {
-    transition: 0.3s;
     color: $light;
 
     &:hover {
       background-color: $primary-color-darken;
       color: $light-darken;
       cursor: pointer;
+    }
+  }
+
+  &__link {
+    &--responsive {
+      display: none;
+      font-size: 1.3em;
+    }
+
+    @include tablet {
+      &--desktop {
+        display: none;
+      }
+      &--responsive {
+        display: block;
+      }
     }
   }
 }

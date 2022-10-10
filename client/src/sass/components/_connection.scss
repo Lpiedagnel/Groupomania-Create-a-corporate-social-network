@@ -3,6 +3,11 @@
   margin: auto;
   grid-column: 1;
 
+  @include mobile {
+    width: 100%;
+    margin-bottom: 1em;
+  }
+
   &__list {
     background-color: $secondary-color;
     padding: 0;
@@ -54,6 +59,10 @@
     border-radius: 5px;
     border: $secondary-color-darken 2px solid;
     padding: 5px;
+
+    @include mobile {
+      width: 90%;
+    }
 
     &:focus {
       outline: none;

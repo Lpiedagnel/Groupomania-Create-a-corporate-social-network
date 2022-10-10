@@ -3,6 +3,10 @@
   grid-template-columns: 7fr 4fr;
   margin: auto;
 
+  @include tablet {
+    grid-template-columns: 1fr;
+  }
+
   &__thread-container {
     grid-column: 1;
   }

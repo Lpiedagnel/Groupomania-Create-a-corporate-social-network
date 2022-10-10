@@ -3,6 +3,10 @@
   width: auto;
   grid-column: 1;
 
+  @include tablet {
+    display: none;
+  }
+
   &__container {
     display: flex;
     flex-direction: column;
