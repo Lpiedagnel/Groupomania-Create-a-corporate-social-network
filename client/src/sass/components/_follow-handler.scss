@@ -1,12 +1,20 @@
 .follow-handler {
-    &__card {
-        color: $primary-color;
-        font-size: 1.2em;
-        transition: 0.3s;
+  &__card {
+    color: $primary-color;
+    font-size: 1.2em;
+    transition: 0.3s;
 
-        &:hover {
-            cursor: pointer;
-            color: $primary-color-darken;
-        }
+    &:hover {
+      cursor: pointer;
+      color: $primary-color-darken;
     }
+  }
+
+  &__suggestion {
+    &--unfollow {
+      background-color: $secondary-color;
+      border: solid 2px $secondary-color-darken;
+      color: $tertiary-color;
+    }
+  }
 }

@@ -43,28 +43,29 @@ const FriendsHint = () => {
   }, [usersData, userData, playOnce])
 
   return (
-    <div className="get-friends-container">
-      <h4>Suggestions</h4>
+    <div className="friends-hint">
+      <h4 className="friends-hint__title">Suggestions</h4>
       {isLoading ? (
-        <div className="icon">
-          <i className="fas fa-spinner fa-pulse"></i>
+        <div className="friends-hint__loading-container">
+          <i className="friends-hint__loading-icon fas fa-spinner fa-pulse"></i>
         </div>
       ) : (
-        <ul>
+        <ul className="friends-hint__list">
           {friendsHint &&
             friendsHint.map((user) => {
               for (let i = 0; i < usersData.length; i++) {
                 if (user === usersData[i]._id) {
                   return (
                     <li
-                      className="user-hint"
+                      className="friends-hint__item"
                       key={user}
                     >
                       <img
+                      className="friends-hint__avatar"
                         src={usersData[i].picture}
                         alt="user-pic"
                       />
-                      <p>{usersData[i].pseudo}</p>
+                      <p className="friends-hint__name">{usersData[i].firstName} {usersData[i].lastName}</p>
                       <FollowHandler
                         idToFollow={usersData[i]._id}
                         type={"suggestion"}

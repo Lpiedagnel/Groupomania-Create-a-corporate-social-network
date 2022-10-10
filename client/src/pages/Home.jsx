@@ -8,7 +8,6 @@ import Trends from "../components/Trends"
 import FriendsHint from "../components/Profil/FriendsHint"
 import Welcome from "../components/Welcome"
 
-
 const Home = () => {
   const uid = useContext(UidContext)
 
@@ -19,14 +18,14 @@ const Home = () => {
         {uid ? (
           <>
             <div className="home__header">
-             <NewPostForm />
+              <NewPostForm />
             </div>
-            <Thread />
+            <div className="home__thread-container">
+              <Thread />
+            </div>
             <div className="home__right-side">
               <div className="home__right-side-container">
-                <div className="home__wrapper">
-                  {/* {uid && <FriendsHint />} */}
-                </div>
+                <div className="home__wrapper">{uid && <FriendsHint />}</div>
               </div>
             </div>
           </>

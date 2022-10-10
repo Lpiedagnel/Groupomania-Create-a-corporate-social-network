@@ -32,7 +32,7 @@ const FollowHandler = ({ idToFollow, type }) => {
       {isFollowed && !isEmpty(userData) && (
         <span onClick={handleUnfollow}>
           {type == "suggestion" && (
-            <button className="unfollow-btn">Abonné</button>
+            <button className="btn follow-handler__suggestion follow-handler__suggestion--unfollow">Abonné</button>
           )}
           {type == "card" && (
             <i className="follow-handler__card fas fa-check-circle"></i>
@@ -42,7 +42,7 @@ const FollowHandler = ({ idToFollow, type }) => {
       {isFollowed == false && !isEmpty(userData) && (
         <span onClick={handleFollow}>
           {type == "suggestion" && (
-            <button className="follow-btn">Suivre</button>
+            <button className="btn follow-handler__suggestion">Suivre</button>
           )}
           {type == "card" && (
             <i className="follow-handler__card far fa-check-circle"></i>
