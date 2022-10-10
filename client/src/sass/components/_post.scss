@@ -12,6 +12,10 @@
     text-align: right;
     font-style: italic;
     line-height: 0.5em;
+
+    @include mobile {
+      display: none;
+    }
   }
 
   &__span-follow {

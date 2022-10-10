@@ -6,6 +6,10 @@
     width: 80%;
     padding: 1em;
 
+    @include tablet {
+        display: none;
+    }
+
     &__title {
         color: $tertiary-color;
     }
@@ -13,11 +17,14 @@
     &__list {
         list-style: none;
         line-height: 3.5em;
+        padding: 0;
     }
 
     &__item {
-        display: grid;
-        grid-template-columns: 20% 50% 30%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
         align-items: center;
     }
 
