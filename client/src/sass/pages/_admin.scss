@@ -2,3 +2,11 @@
     margin: 1em;
     width: 80%;
 }
+
+@include mobile {
+    .admin-users {
+        &__list {
+            padding: 0;
+        }
+    }
+}

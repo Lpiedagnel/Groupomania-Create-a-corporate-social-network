@@ -51,6 +51,11 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+
+    @include mobile {
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 
   &__upload-container {
@@ -68,6 +73,12 @@
 
     &:hover {
       color: $primary-color;
+    }
+
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
     }
   }
 

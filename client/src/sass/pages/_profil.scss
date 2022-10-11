@@ -1,12 +1,11 @@
 .profil {
-
-&__log {
+  &__log {
     width: 50%;
 
     @include mobile {
-        width: 100%;
+      width: 100%;
     }
-}
+  }
   &__container {
     display: flex;
     flex-direction: column;
@@ -53,6 +52,10 @@
     font-size: 1.1em;
     padding: 0.5em;
     width: 25%;
+
+    @include mobile {
+      width: 100%;
+    }
   }
 
   &__follow {
@@ -67,6 +70,7 @@
 
     @include mobile {
       grid-template-columns: 1fr;
+      padding: 0;
     }
   }
 
