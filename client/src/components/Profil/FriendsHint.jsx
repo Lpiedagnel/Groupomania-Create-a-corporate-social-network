@@ -56,6 +56,7 @@ const FriendsHint = () => {
               for (let i = 0; i < usersData.length; i++) {
                 if (user === usersData[i]._id) {
                   return (
+                    <>
                     <li
                       className="friends-hint__item"
                       key={user}
@@ -70,7 +71,10 @@ const FriendsHint = () => {
                         idToFollow={usersData[i]._id}
                         type={"suggestion"}
                       />
+                      
                     </li>
+                    <hr className="friends-hint__hr" />
+                    </>
                   )
                 }
               }

@@ -11,6 +11,12 @@
     grid-column: 1;
   }
 
+  &__thread-list {
+    @include tablet {
+      padding: 0;
+    }
+  }
+
   &__right-side {
     grid-column: 2;
     grid-row: 1 / span 2;
