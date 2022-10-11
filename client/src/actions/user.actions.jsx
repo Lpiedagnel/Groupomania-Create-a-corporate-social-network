@@ -30,7 +30,7 @@ export const uploadPicture = (data, id) => {
       method: "post",
       withCredentials: true,
       url: `${process.env.REACT_APP_API_URL}api/user/upload`,
-      data: { data },
+      data: data,
     })
       .then((res) => {
         if (res.data.errors) {

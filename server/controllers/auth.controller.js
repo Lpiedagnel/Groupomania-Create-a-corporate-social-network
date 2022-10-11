@@ -12,7 +12,6 @@ const createToken = (id) => {
 }
 
 module.exports.signUp = async (req, res) => {
-  console.log(req.body)
   const { firstName, lastName, job, email, password } = req.body
 
   try {
