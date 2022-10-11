@@ -18,9 +18,13 @@ export const DELETE_COMMENT = "DELETE_COMMENT"
 export const GET_POST_ERRORS = "GET_POST_ERRORS"
 
 export const getPosts = (num) => {
+
   return (dispatch) => {
-    return axios
-      .get(`${process.env.REACT_APP_API_URL}api/post/`)
+    return axios({
+      method: "get",
+      withCredentials: true,
+      url: `${process.env.REACT_APP_API_URL}api/post/`,
+    })
       .then((res) => {
         const array = res.data.slice(0, num)
         dispatch({ type: GET_POSTS, payload: array })
@@ -32,8 +36,12 @@ export const getPosts = (num) => {
 
 export const addPost = (data) => {
   return (dispatch) => {
-    return axios
-      .post(`${process.env.REACT_APP_API_URL}api/post/`, data)
+    return axios({
+      method: "post",
+      withCredentials: true,
+      url: `${process.env.REACT_APP_API_URL}api/post/`,
+      data: data
+    })
       .then((res) => {
         if (res.data.errors) {
           dispatch({ type: GET_POST_ERRORS, payload: res.data.errors })
@@ -48,6 +56,7 @@ export const likePost = (postId, userId) => {
   return (dispatch) => {
     return axios({
       method: "patch",
+      withCredentials: true,
       url: `${process.env.REACT_APP_API_URL}api/post/like-post/` + postId,
       data: { id: userId },
     })
@@ -62,6 +71,7 @@ export const unlikePost = (postId, userId) => {
   return (dispatch) => {
     return axios({
       method: "patch",
+      withCredentials: true,
       url: `${process.env.REACT_APP_API_URL}api/post/unlike-post/` + postId,
       data: { id: userId },
     })
@@ -106,6 +116,7 @@ export const addComment = (postId, commenterId, text, commenterPseudo) => {
   return (dispatch) => {
     return axios({
       method: "patch",
+      withCredentials: true,
       url: `${process.env.REACT_APP_API_URL}api/post/comment-post/${postId}`,
       data: { commenterId, text, commenterPseudo },
     })
@@ -120,6 +131,7 @@ export const editComment = (postId, commentId, text) => {
   return (dispatch) => {
     return axios({
       method: "patch",
+      withCredentials: true,
       url: `${process.env.REACT_APP_API_URL}api/post/edit-comment-post/${postId}`,
       data: { commentId, text },
     })
@@ -134,6 +146,7 @@ export const deleteComment = (postId, commentId) => {
   return (dispatch) => {
     return axios({
       method: "patch",
+      withCredentials: true,
       url: `${process.env.REACT_APP_API_URL}api/post/delete-comment-post/${postId}`,
       data: { commentId },
     })

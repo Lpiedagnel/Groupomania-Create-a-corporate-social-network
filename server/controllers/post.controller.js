@@ -10,22 +10,22 @@ module.exports.readPost = (req, res) => {
 }
 
 module.exports.createPost = async (req, res) => {
-  const newPost = new PostModel({
-    posterId: req.body.posterId,
-    message: req.body.message,
-    picture:
-      req.file !== undefined ? `./uploads/posts/${req.file.filename}` : "",
-    video: req.body.video,
-    likers: [],
-    comments: [],
-  })
+    const newPost = new PostModel({
+      posterId: req.body.posterId,
+      message: req.body.message,
+      picture:
+        req.file !== undefined ? `./uploads/posts/${req.file.filename}` : "",
+      video: req.body.video,
+      likers: [],
+      comments: [],
+    })
 
-  try {
-    const post = await newPost.save()
-    return res.status(201).json(post)
-  } catch (err) {
-    res.status(400).send(err)
-  }
+    try {
+      const post = await newPost.save()
+      return res.status(201).json(post)
+    } catch (err) {
+      res.status(400).send(err)
+    }
 }
 
 module.exports.updatePost = (req, res, next) => {

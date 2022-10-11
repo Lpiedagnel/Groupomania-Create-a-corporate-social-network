@@ -37,8 +37,20 @@ module.exports.requireAuth = (req, res, next) => {
   }
 }
 
+module.exports.requireLoggedIn = (req, res, next) => {
+  try {
+    const token = req.cookies.jwt
+    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET)
+    const userId = decodedToken.userId
+    res.locals.loggedIn = true
+    next()
+} catch(error) {
+  res.locals.loggedIn = false
+    res.status(403).json({ message: 'Vous devez être connecté pour faire cette action.' })
+}
+}
+
 module.exports.requireAdmin = (req, res, next) => {
-  console.log("The jwt cookie is " + req.cookies)
   const token = req.cookies.jwt
   if (token) {
     jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {

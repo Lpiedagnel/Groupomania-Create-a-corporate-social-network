@@ -12,8 +12,11 @@ export const GET_USER_ERRORS = "GET_USER_ERRORS"
 
 export const getUser = (uid) => {
   return (dispatch) => {
-    return axios
-      .get(`${process.env.REACT_APP_API_URL}api/user/${uid}`)
+    return axios({
+      method: "get",
+      withCredentials: true,
+      url: `${process.env.REACT_APP_API_URL}api/user/${uid}`,
+    })
       .then((res) => {
         dispatch({ type: GET_USER, payload: res.data })
       })
@@ -23,8 +26,12 @@ export const getUser = (uid) => {
 
 export const uploadPicture = (data, id) => {
   return (dispatch) => {
-    return axios
-      .post(`${process.env.REACT_APP_API_URL}api/user/upload`, data)
+    return axios({
+      method: "post",
+      withCredentials: true,
+      url: `${process.env.REACT_APP_API_URL}api/user/upload`,
+      data: { data },
+    })
       .then((res) => {
         if (res.data.errors) {
           dispatch({ type: GET_USER_ERRORS, payload: res.data.errors })
@@ -45,6 +52,7 @@ export const updateBio = (userId, bio) => {
   return (dispatch) => {
     return axios({
       method: "put",
+      withCredentials: true,
       url: `${process.env.REACT_APP_API_URL}api/user/` + userId,
       data: { bio },
     })
@@ -59,6 +67,7 @@ export const updateJob = (userId, job) => {
   return (dispatch) => {
     return axios({
       method: "put",
+      withCredentials: true,
       url: `${process.env.REACT_APP_API_URL}api/user/` + userId,
       data: { job },
     })
@@ -73,6 +82,7 @@ export const followUser = (followerId, idToFollow) => {
   return (dispatch) => {
     return axios({
       method: "patch",
+      withCredentials: true,
       url: `${process.env.REACT_APP_API_URL}api/user/follow/` + followerId,
       data: { idToFollow },
     })
@@ -87,6 +97,7 @@ export const unfollowUser = (followerId, idToUnfollow) => {
   return (dispatch) => {
     return axios({
       method: "patch",
+      withCredentials: true,
       url: `${process.env.REACT_APP_API_URL}api/user/unfollow/` + followerId,
       data: { idToUnfollow },
     })

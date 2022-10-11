@@ -61,12 +61,12 @@ const UpdateProfil = () => {
             )}
             {updateJobForm && (
               <>
-                <textArea
-                  className="profil__area"
+                <textarea
+                  className="profil__textarea"
                   type="text"
                   defaultValue={userData.job}
                   onChange={(e) => setJob(e.target.value)}
-                ></textArea>
+                />
                 <button
                   className="profil__btn btn"
                   onClick={handleJobUpdate}
@@ -93,12 +93,12 @@ const UpdateProfil = () => {
             )}
             {updateBioForm && (
               <>
-                <textArea
-                  className="profil__area"
+                <textarea
+                  className="profil__textarea"
                   type="text"
                   defaultValue={userData.bio}
                   onChange={(e) => setBio(e.target.value)}
-                ></textArea>
+                />
                 <button
                   className="profil__btn btn"
                   onClick={handleBioUpdate}
@@ -119,40 +119,40 @@ const UpdateProfil = () => {
           </h5>
         </div>
       </div>
-      { !isEmpty(userData.following) ?
-      <div className="profil__follow">
-        <h3 className="profil__title-section">Abonnements</h3>
-        <ul className="profil__list">
-          {usersData.map((user) => {
-            for (let i = 0; i < userData.following.length; i++) {
-              if (user._id === userData.following[i]) {
-                return (
-                  <li
-                    key={user._id}
-                    className="profil__item"
-                  >
-                    <img
-                      className="profil__avatar-follow"
-                      src={user.picture}
-                      alt="user-pic"
-                    />
-                    <h4 className="profil__username-follow">
-                      {user.firstName} {user.lastName}
-                    </h4>
-                    <div className="follow-handler">
-                      <FollowHandler
-                        idToFollow={user._id}
-                        type={"suggestion"}
+      {!isEmpty(userData.following) ? (
+        <div className="profil__follow">
+          <h3 className="profil__title-section">Abonnements</h3>
+          <ul className="profil__list">
+            {usersData.map((user) => {
+              for (let i = 0; i < userData.following.length; i++) {
+                if (user._id === userData.following[i]) {
+                  return (
+                    <li
+                      key={user._id}
+                      className="profil__item"
+                    >
+                      <img
+                        className="profil__avatar-follow"
+                        src={user.picture}
+                        alt="user-pic"
                       />
-                    </div>
-                  </li>
-                )
+                      <h4 className="profil__username-follow">
+                        {user.firstName} {user.lastName}
+                      </h4>
+                      <div className="follow-handler">
+                        <FollowHandler
+                          idToFollow={user._id}
+                          type={"suggestion"}
+                        />
+                      </div>
+                    </li>
+                  )
+                }
               }
-            }
-          })}
-        </ul>
-      </div>
-      : null }
+            })}
+          </ul>
+        </div>
+      ) : null}
       {!isEmpty(userData.followers) ? (
         <div className="profil__follow">
           <h3 className="profil__title-section">Abonnés</h3>

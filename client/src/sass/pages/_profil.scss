@@ -1,74 +1,82 @@
 .profil {
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
 
-    &__container {
-        display: flex;
-        flex-direction: column;
+  &__name {
+    text-align: center;
+    color: $secondary-color-darken;
+  }
+
+  &__update {
+    margin: 0 5%;
+    display: grid;
+    grid-template-columns: 3fr 5fr;
+
+    @include tablet {
+      grid-template-columns: 1fr;
     }
+  }
 
-    &__name {
-        text-align: center;
-        color: $secondary-color-darken;
+  &__left-part {
+    margin: 20px;
+    background-color: $secondary-color;
+    border-radius: 5%;
+    text-align: center;
+  }
+
+  &__title-section {
+    color: $tertiary-color;
+  }
+
+  &__avatar {
+    border-radius: 25%;
+    height: 225px;
+    width: 225px;
+    object-fit: cover;
+    box-shadow: 0px 0px 0px 2px $secondary-color-darken;
+  }
+
+  &__textarea {
+    border-radius: 15px;
+    border: 2px solid $secondary-color;
+    outline: none;
+    font-size: 1.1em;
+    padding: 0.5em;
+    width: 25%;
+  }
+
+  &__follow {
+    margin: auto;
+    width: 85%;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+
+    @include mobile {
+      grid-template-columns: 1fr;
     }
+  }
 
-    &__update {
-        margin: 0 5%;
-        display: grid;
-        grid-template-columns: 3fr 5fr;
+  &__item {
+    border: solid 2px $secondary-color;
+    background-color: $light;
+    border-radius: 15px;
+    padding: 1em;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    align-items: center;
+  }
 
-        @include tablet {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    &__left-part {
-        margin: 20px;
-        background-color: $secondary-color;
-        border-radius: 5%;
-        text-align: center;
-     }
-
-    &__title-section {
-        color: $tertiary-color;
-    }
-
-    &__avatar {
-        border-radius: 25%;
-        height: 225px;
-        width: 225px;
-        object-fit: cover;
-        box-shadow: 0px 0px 0px 2px $secondary-color-darken;
-    }
-
-    &__follow {
-        margin: auto;
-        width: 85%;
-    }
-
-    &__list {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 1em;
-
-        @include mobile {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    &__item {
-        border: solid 2px $secondary-color;
-        background-color: $light;
-        border-radius: 15px;
-        padding: 1em;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
-        align-items: center;
-    }
-
-    &__avatar-follow {
-        width: 75px;
-        height: 75px;
-        border-radius: 50%;
-        object-fit: cover;
-        grid-column: 1;
-    }
+  &__avatar-follow {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+    grid-column: 1;
+  }
 }
