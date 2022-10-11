@@ -12,6 +12,7 @@ module.exports.checkUser = (req, res, next) => {
       } else {
         let user = await UserModel.findById(decodedToken.id)
         res.locals.user = user
+        res.locals.isAdmin = user.isAdmin
         next()
       }
     })
@@ -33,5 +34,26 @@ module.exports.requireAuth = (req, res, next) => {
     })
   } else {
     console.log("No token")
+  }
+}
+
+module.exports.requireAdmin = (req, res, next) => {
+  console.log("The jwt cookie is " + req.cookies)
+  const token = req.cookies.jwt
+  if (token) {
+    jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
+      if (err) {
+        res.locals.isAdmin = false
+        next()
+      } else {
+        let user = await UserModel.findById(decodedToken.id)
+        res.locals.isAdmin = user.isAdmin
+        console.log("The current user is admin? " + res.locals.isAdmin)
+        next()
+      }
+    })
+  } else {
+    res.locals.isAdmin = false
+    next()
   }
 }

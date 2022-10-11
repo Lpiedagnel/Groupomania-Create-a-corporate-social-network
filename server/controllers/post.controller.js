@@ -29,34 +29,39 @@ module.exports.createPost = async (req, res) => {
 }
 
 module.exports.updatePost = (req, res, next) => {
-  PostModel.findOne({ _id: req.params.id }).then((post) => {
-    if (post.posterId !== req.body.userId && req.body.isAdmin == false) {
-      res.status(403).json({
-        message: "Vous n'avez pas la permission de modifier ce message.",
-      })
-    } else {
-      const updatedRecord = {
-        message: req.body.message,
+  PostModel.findOne({ _id: req.params.id })
+    .then((post) => {
+      if (post.posterId !== req.body.userId && res.locals.isAdmin == false) {
+        res.status(403).json({
+          message: "Vous n'avez pas la permission de modifier ce message.",
+        })
+      } else {
+        const updatedRecord = {
+          message: req.body.message,
+        }
+        PostModel.findByIdAndUpdate(
+          req.params.id,
+          { $set: updatedRecord },
+          { new: true }
+        )
+          .then((docs) => res.status(201).json(docs))
+          .catch((err) => res.status(500).send({ message: err }))
       }
-      PostModel.findByIdAndUpdate(
-        req.params.id,
-        { $set: updatedRecord },
-        { new: true }
-      )
-        .then((docs) => res.status(201).json(docs))
-        .catch((err) => res.status(500).send({ message: err }))
-    }
-  })
+    })
+    .catch((error) => {
+      res.status(500).json({ error })
+    })
 }
 
 module.exports.deletePost = (req, res, next) => {
   PostModel.findOne({ _id: req.params.id })
     .then((post) => {
-      if (post.posterId !== req.body.userId && req.body.isAdmin == false) {
+      if (post.posterId !== req.body.userId && res.locals.isAdmin !== true) {
         res.status(403).json({
           message: "Vous n'avez pas la permission de supprimer ce message.",
         })
       } else {
+        console.log("Utilisateur vérifié")
         PostModel.deleteOne({ _id: req.params.id })
           .then(() => {
             res.status(200).json({ message: "Message supprimé avec succès !" })
@@ -65,6 +70,11 @@ module.exports.deletePost = (req, res, next) => {
       }
     })
     .catch((error) => {
+      console.log("Erreur une")
+      res.status(500).json({ error })
+    })
+    .catch((error) => {
+      console.log("Erreur deux")
       res.status(500).json({ error })
     })
 }

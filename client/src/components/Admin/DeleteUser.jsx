@@ -9,7 +9,7 @@ const DeleteUser = (props) => {
     window.confirm(
       `Voulez-vous vraiment supprimer ${props.firstName} ${props.lastName} et tous ses messages ?`
     )
-      ? dispatch(deleteUser(props.id, props.isAdmin))
+      ? dispatch(deleteUser(props.id))
       : null
   }
 

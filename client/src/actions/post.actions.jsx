@@ -72,12 +72,13 @@ export const unlikePost = (postId, userId) => {
   }
 }
 
-export const updatePost = (postId, message, userId, isAdmin) => {
+export const updatePost = (postId, message, userId) => {
   return (dispatch) => {
     return axios({
       method: "put",
+      withCredentials: true,
       url: `${process.env.REACT_APP_API_URL}api/post/` + postId,
-      data: { message, userId, isAdmin },
+      data: { message, userId },
     })
       .then((res) => {
         dispatch({ type: UPDATE_POST, payload: { message, postId } })
@@ -86,12 +87,13 @@ export const updatePost = (postId, message, userId, isAdmin) => {
   }
 }
 
-export const deletePost = (postId, userId, isAdmin ) => {
+export const deletePost = (postId, userId) => {
   return (dispatch) => {
     return axios({
       method: "delete",
+      withCredentials: true,
       url: `${process.env.REACT_APP_API_URL}api/post/` + postId,
-      data: { userId, isAdmin }
+      data: { userId }
     })
       .then((res) => {
         dispatch({ type: DELETE_POST, payload: { postId } })

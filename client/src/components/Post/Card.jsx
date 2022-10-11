@@ -20,7 +20,7 @@ const Card = ({ post }) => {
 
   const updateItem = async () => {
     if (textUpdate) {
-      dispatch(updatePost(post._id, textUpdate, userData._id, userData.isAdmin))
+      dispatch(updatePost(post._id, textUpdate, userData._id))
     }
     setIsUpdated(false)
   }
@@ -122,7 +122,6 @@ const Card = ({ post }) => {
                 <DeleteCard
                   id={post._id}
                   userId={userData._id}
-                  isAdmin={userData.isAdmin}
                 />
               </div>
             ) : null}

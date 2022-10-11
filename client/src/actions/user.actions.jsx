@@ -97,12 +97,12 @@ export const unfollowUser = (followerId, idToUnfollow) => {
   }
 }
 
-export const deleteUser = (userId, isAdmin ) => {
+export const deleteUser = (userId) => {
   return (dispatch) => {
     return axios({
       method: "delete",
+      withCredentials: true,
       url: `${process.env.REACT_APP_API_URL}api/user/` + userId,
-      data: { isAdmin }
     })
       .then((res) => {
         dispatch({ type: DELETE_USER, payload: { userId } })
