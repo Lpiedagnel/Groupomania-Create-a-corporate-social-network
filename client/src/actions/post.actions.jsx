@@ -118,7 +118,7 @@ export const addComment = (postId, commenterId, text, commenterPseudo) => {
       method: "patch",
       withCredentials: true,
       url: `${process.env.REACT_APP_API_URL}api/post/comment-post/${postId}`,
-      data: { commenterId, text, commenterPseudo },
+      data: { commenterId, text },
     })
       .then((res) => {
         dispatch({ type: ADD_COMMENT, payload: { postId } })
@@ -127,31 +127,31 @@ export const addComment = (postId, commenterId, text, commenterPseudo) => {
   }
 }
 
-export const editComment = (postId, commentId, text) => {
+export const editComment = (postId, commentId, text, userId) => {
   return (dispatch) => {
     return axios({
       method: "patch",
       withCredentials: true,
       url: `${process.env.REACT_APP_API_URL}api/post/edit-comment-post/${postId}`,
-      data: { commentId, text },
+      data: { commentId, text, userId },
     })
       .then((res) => {
-        dispatch({ type: EDIT_COMMENT, payload: { postId, commentId, text } })
+        dispatch({ type: EDIT_COMMENT, payload: { postId, commentId, text, userId } })
       })
       .catch((err) => console.log(err))
   }
 }
 
-export const deleteComment = (postId, commentId) => {
+export const deleteComment = (postId, commentId, userId) => {
   return (dispatch) => {
     return axios({
       method: "patch",
       withCredentials: true,
       url: `${process.env.REACT_APP_API_URL}api/post/delete-comment-post/${postId}`,
-      data: { commentId },
+      data: { commentId, userId },
     })
       .then((res) => {
-        dispatch({ type: DELETE_COMMENT, payload: { postId, commentId } })
+        dispatch({ type: DELETE_COMMENT, payload: { postId, commentId, userId } })
       })
       .catch((err) => console.log(err))
   }

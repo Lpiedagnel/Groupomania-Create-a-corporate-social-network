@@ -1,7 +1,10 @@
 const router = require("express").Router()
 const postController = require("../controllers/post.controller")
 const { uploadFile } = require("../middleware/image.middleware")
-const { requireAdmin, requireLoggedIn } = require("../middleware/auth.middleware")
+const {
+  requireAdmin,
+  requireLoggedIn,
+} = require("../middleware/auth.middleware")
 
 router.get("/", requireLoggedIn, postController.readPost)
 router.post("/", requireLoggedIn, uploadFile, postController.createPost)
@@ -12,7 +15,17 @@ router.patch("/unlike-post/:id", requireLoggedIn, postController.unlikePost)
 
 // Comments
 router.patch("/comment-post/:id", requireLoggedIn, postController.commentPost)
-router.patch("/edit-comment-post/:id", requireLoggedIn, postController.editCommentPost)
-router.patch("/delete-comment-post/:id", requireLoggedIn, postController.deleteCommentPost)
+router.patch(
+  "/edit-comment-post/:id",
+  requireLoggedIn,
+  requireAdmin,
+  postController.editCommentPost
+)
+router.patch(
+  "/delete-comment-post/:id",
+  requireLoggedIn,
+  requireAdmin,
+  postController.deleteCommentPost
+)
 
 module.exports = router

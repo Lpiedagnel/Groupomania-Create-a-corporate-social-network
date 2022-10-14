@@ -10,22 +10,22 @@ module.exports.readPost = (req, res) => {
 }
 
 module.exports.createPost = async (req, res) => {
-    const newPost = new PostModel({
-      posterId: req.body.posterId,
-      message: req.body.message,
-      picture:
-        req.file !== undefined ? `./uploads/posts/${req.file.filename}` : "",
-      video: req.body.video,
-      likers: [],
-      comments: [],
-    })
+  const newPost = new PostModel({
+    posterId: req.body.posterId,
+    message: req.body.message,
+    picture:
+      req.file !== undefined ? `./uploads/posts/${req.file.filename}` : "",
+    video: req.body.video,
+    likers: [],
+    comments: [],
+  })
 
-    try {
-      const post = await newPost.save()
-      return res.status(201).json(post)
-    } catch (err) {
-      res.status(400).send(err)
-    }
+  try {
+    const post = await newPost.save()
+    return res.status(201).json(post)
+  } catch (err) {
+    res.status(400).send(err)
+  }
 }
 
 module.exports.updatePost = (req, res, next) => {
@@ -168,6 +168,16 @@ module.exports.editCommentPost = (req, res) => {
       )
 
       if (!theComment) return res.status(404).send("Comment not found")
+      if (
+        theComment.commenterId !== req.body.userId &&
+        res.locals.isAdmin !== true
+      ) {
+        return res
+          .status(403)
+          .send(
+            "You have to be user admin or commenter to update this comment."
+          )
+      }
       theComment.text = req.body.text
 
       return docs.save((err) => {
@@ -185,23 +195,42 @@ module.exports.deleteCommentPost = (req, res) => {
   if (!ObjectId.isValid(req.params.id))
     return res.status(400).send("ID unknown: " + req.params.id)
 
-  try {
-    return PostModel.findByIdAndUpdate(
-      req.params.id,
-      {
-        $pull: {
-          comments: {
-            _id: req.body.commentId,
+  PostModel.findOne({ _id: req.params.id })
+    .then((post) => {
+      // Check comment
+      const theComment = post.comments.find((comment) =>
+        comment._id.equals(req.body.commentId)
+      )
+
+      if (!theComment) return res.status(404).send("Comment not found")
+      if (
+        theComment.commenterId !== req.body.userId &&
+        res.locals.isAdmin !== true
+      ) {
+        return res
+          .status(403)
+          .send(
+            "You have to be user admin or commenter to delete this comment."
+          )
+      }
+
+      // Update post
+      post.updateOne(
+        {
+          $pull: {
+            comments: {
+              _id: req.body.commentId,
+            },
           },
         },
-      },
-      { new: true },
-      (err, docs) => {
-        if (!err) return res.send(docs)
-        else return res.status(400).send(err)
-      }
-    )
-  } catch (err) {
-    res.status(400).send(err)
-  }
+        { new: true },
+        (err, post) => {
+          if (!err) return res.send(post)
+          else return res.status(400).send(err)
+        }
+      )
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 }

@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux"
 import { deleteComment, editComment } from "../../actions/post.actions"
 import { UidContext } from "../AppContext"
 
-const EditDeleteComment = ({ comment, postId, isAdmin }) => {
+const EditDeleteComment = ({ comment, postId, isAdmin, userId }) => {
   const [isAuthor, setIsAuthor] = useState(false)
   const [edit, setEdit] = useState(false)
   const [text, setText] = useState("")
@@ -17,13 +17,14 @@ const EditDeleteComment = ({ comment, postId, isAdmin }) => {
     e.preventDefault()
 
     if (text) {
-      dispatch(editComment(postId, comment._id, text))
+      dispatch(editComment(postId, comment._id, text, userId))
       setText("")
       setEdit(false)
     }
   }
 
-  const handleDelete = () => dispatch(deleteComment(postId, comment._id))
+  const handleDelete = () =>
+    dispatch(deleteComment(postId, comment._id, userId))
 
   useEffect(() => {
     const checkAuthor = () => {

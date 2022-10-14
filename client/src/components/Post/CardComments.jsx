@@ -16,7 +16,7 @@ const CardComments = ({ post }) => {
     e.preventDefault()
 
     if (text) {
-      dispatch(addComment(post._id, userData._id, text, userData.pseudo))
+      dispatch(addComment(post._id, userData._id, text))
         .then(() => dispatch(getPosts()))
         .then(() => setText(""))
     }
@@ -70,13 +70,16 @@ const CardComments = ({ post }) => {
                     />
                   )}
                 </div>
-                <span className="comment__date">{timestampParser(comment.timestamp)}</span>
+                <span className="comment__date">
+                  {timestampParser(comment.timestamp)}
+                </span>
               </div>
               <p className="comment__message">{comment.text}</p>
               <EditDeleteComment
                 comment={comment}
                 postId={post._id}
                 isAdmin={userData.isAdmin}
+                userId={userData._id}
               />
             </div>
           </div>
@@ -89,7 +92,7 @@ const CardComments = ({ post }) => {
           className="comment__form"
         >
           <input
-          className="comment__input"
+            className="comment__input"
             type="text"
             name="text"
             onChange={(e) => setText(e.target.value)}
@@ -98,7 +101,7 @@ const CardComments = ({ post }) => {
           />
           <br />
           <input
-          className="comment__btn btn"
+            className="comment__btn btn"
             type="submit"
             value="Envoyer"
           />
