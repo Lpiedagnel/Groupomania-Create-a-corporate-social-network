@@ -15,10 +15,7 @@ const Welcome = () => {
           Bienvenue sur le réseau social Groupomania !
         </h1>
         <p className="welcome__resume">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod eius
-          suscipit, nisi earum quibusdam accusantium deleniti mollitia
-          consectetur assumenda laboriosam ratione ullam modi delectus
-          repudiandae debitis quas autem beatae aut?
+          Ceci est la version de test de Groupomania ! Il n'est pas possible de créer un nouveau compte mais vous pouvez vous connecter avec le compte d'essai et tester les différentes fonctionnalités proposées. ;)
         </p>
       </div>
       <Log

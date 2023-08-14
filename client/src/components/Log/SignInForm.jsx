@@ -2,8 +2,8 @@ import React, { useState } from "react"
 import axios from "axios"
 
 const SignInForm = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("test@gmail.com")
+  const [password, setPassword] = useState("test11")
 
   const handleLogin = (e) => {
     e.preventDefault()
