@@ -18,11 +18,11 @@ const UploadImg = () => {
     ) {
       window.alert("Attention, l'image doit être au format JPG, JPEG ou PNG.")
       return setError("L'image doit être au format JPG, JPEG ou PNG.")
-    } else if (file.size > 500000) {
+    } else if (file.size > 100000) {
       window.alert(
-        "Attention, vous ne pouvez pas mettre une image de plus de 500 Ko."
+        "Il n'est pas possible de téléchargez une image dépassant 100 Ko dans la version de test de Groupomania."
       )
-      return setError("Le fichier dépasse 500ko")
+      return setError("La limite supportée par la version de test de Groupomania est 100 Ko.")
     } else {
       setError("")
       const data = new FormData()

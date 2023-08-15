@@ -29,5 +29,5 @@ module.exports = multer({
     cb(null, true)
   },
   // Check size of file
-  limits: { fileSize: 500000 },
+  limits: { fileSize: 100000 },
 }).single("file")

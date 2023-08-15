@@ -35,12 +35,12 @@ module.exports.uploadFile = function (req, res, next) {
       cb(null, true)
     },
     // Check size of file
-    limits: { fileSize: 500000 },
+    limits: { fileSize: 100000 },
   }).single("file")
 
   upload(req, res, function (err) {
     if (err instanceof multer.MulterError && err.code === "LIMIT_FILE_SIZE") {
-      errors.maxSize = "Le fichier dépasse 500ko"
+      errors.maxSize = "La version de test de Groupomania ne permet pas le téléchargement d'image de plus de 100ko"
       return res.status(201).json({ errors })
       // Unknow error
     } else if (err) {
