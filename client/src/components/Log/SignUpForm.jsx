@@ -71,7 +71,7 @@ const SignUpForm = () => {
           <SignInForm />
           <span></span>
           <h4 className="signup__success">
-            Enregistrement réussi, veuillez-vous connecter
+            Il n'est pas possible de s'inscrire sur la version de test de Groupomania. Vous pouvez utiliser le compte de test pour essayer les fonctionnalités !
           </h4>
         </>
       ) : (

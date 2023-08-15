@@ -14,7 +14,9 @@ const createToken = (id) => {
 module.exports.signUp = async (req, res) => {
   const { firstName, lastName, job, email, password } = req.body
 
+  // The test version of Groupomania doesn't allow signUp.
   try {
+    /*
     const user = await UserModel.create({
       firstName,
       lastName,
@@ -23,6 +25,8 @@ module.exports.signUp = async (req, res) => {
       password,
     })
     res.status(201).json({ user: user._id })
+    */
+   res.status(200).json({ message: "Il n'est pas possible de créer un compte sur la version de test de Groupomania."})
   } catch (err) {
     const errors = signUpErrors(err)
     res.status(200).send({ errors })

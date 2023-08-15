@@ -1,6 +1,5 @@
 module.exports.signUpErrors = (err) => {
-  console.log(err)
-
+  
   let errors = { firstName: "", lastName: "", job: "", email: "", password: "" }
 
   if (err.message.includes("firstName"))
