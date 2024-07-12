@@ -7,6 +7,8 @@ Attention : ce repository n'est PAS une correction officielle par OpenClassrooms
 
 ## Installation
 
+[EDIT 12/07 : L'installation du site nécessite la création d'une base de données MongoDB. À l'époque, pour les besoins de l'évaluation j'ai inclus exceptionnellement un fichier .env contenant la connexion à une database existante. Mais celle-ci ayant expirée depuis, vous devez désormais en créer une si vous voulez installer l'application.]
+
 1. Clonez ce repository et récupérez les dossiers server et client.
 
 2. Dans le dossier server : utilisez `npm install` pour installer toutes les dépendances nécessaires au fonctionnement de l'API. Celui-ci est propulsé par Express.
